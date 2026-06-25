@@ -1,0 +1,3837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FP Mensaje · Explora FP × Ucademy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f1f3f0; --surface:#fff; --surface-2:#f6f7f4; --surface-3:#eaece7;
+    --line:#e0e3dd; --ink:#18211c; --ink-soft:#586057; --ink-faint:#939c93;
+    --brand:#16633f; --brand-deep:#0e4a2e; --accent:#18a06a; --accent-soft:#e4f3ea; --accent-strong:#0f6e49;
+    --warm:#d98324; --warm-soft:#fbeede; --danger:#d4493c;
+    --seg:#0f9268; --ego:#2563c4; --soc:#b06a0d;
+    --wa:#dcf8c6; --wa-line:#c5ebb0; --wa-bg:#efe7dd;
+    --r:13px; --shadow-sm:0 1px 2px rgba(20,40,30,.06);
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --display:"Fraunces",Georgia,serif;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .topbar{display:flex;align-items:center;gap:14px;padding:12px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(241,243,240,.88);backdrop-filter:saturate(160%) blur(10px);z-index:5;}
+  .brand-mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,var(--brand),var(--brand-deep));color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:18px;box-shadow:0 2px 8px rgba(14,74,46,.25);}
+  .brand-logo{display:flex;align-items:center;gap:11px;}
+  .brand-name{font-family:var(--display);font-size:17px;font-weight:600;line-height:1.1;}
+  .brand-name span{color:var(--accent);font-style:italic;}
+  .brand-tag{font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em;text-transform:uppercase;margin-top:2px;}
+  .top-actions{margin-left:auto;display:flex;align-items:center;gap:10px;}
+  .badge-demo{font-size:11px;font-weight:600;color:var(--warm);background:var(--warm-soft);border:1px solid #f1dcc0;padding:4px 10px;border-radius:99px;}
+  .wrap{max-width:1340px;margin:0 auto;padding:22px 24px 80px;}
+  .intro{margin:6px 0 18px;}
+  .intro h1{font-family:var(--display);font-weight:600;font-size:25px;letter-spacing:-.02em;margin:0 0 4px;}
+  .intro p{margin:0;color:var(--ink-soft);max-width:820px;}
+  .motor-note{font-size:12.5px;color:var(--ink-faint);margin-top:8px;display:flex;align-items:center;gap:7px;}
+  .dot{width:7px;height:7px;border-radius:99px;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);flex-shrink:0;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);}
+  .input-card{padding:18px;margin-bottom:18px;}
+  .in-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.in-grid{grid-template-columns:1fr;}}
+  .label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-bottom:8px;display:block;}
+  textarea{width:100%;min-height:100px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px 13px;font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink);background:var(--surface-2);outline:none;}
+  textarea:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-soft);}
+  .input-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:13px;}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:600;border-radius:10px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);transition:.15s;display:inline-flex;align-items:center;gap:7px;}
+  .btn:hover{border-color:var(--ink-faint);}
+  .btn-primary{background:var(--brand);color:#fff;border-color:var(--brand);} .btn-primary:hover{background:var(--brand-deep);}
+  .btn-sm{padding:6px 11px;font-size:12.5px;}
+  .ex-label{font-size:12.5px;color:var(--ink-faint);} .spacer{flex:1;} .priv{font-size:11.5px;color:var(--ink-faint);}
+  #results{display:none;} #results.show{display:block;}
+  .cols{display:grid;grid-template-columns:340px 1fr 310px;gap:16px;align-items:start;}
+  @media(max-width:1080px){.cols{grid-template-columns:1fr;}}
+  .panel{padding:16px;}
+  .panel h3{font-family:var(--display);font-weight:600;font-size:16px;margin:0 0 4px;}
+  .panel .sub{font-size:12.5px;color:var(--ink-faint);margin:0 0 14px;}
+  .field{margin-bottom:14px;}
+  .field>label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);display:block;margin-bottom:6px;}
+  .field input[type=text],.field input[type=date],.field input[type=time],.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:var(--sans);font-size:14px;background:var(--surface-2);outline:none;color:var(--ink);}
+  .field input:focus,.field select:focus{border-color:var(--accent);background:#fff;}
+  .row2{display:flex;gap:8px;}
+  .pills{display:flex;gap:6px;}
+  .pills>span{flex:1 1 0;display:flex;min-width:0;}
+  .pills label{flex:1;text-align:center;font-size:12.5px;font-weight:600;padding:8px 4px;border-radius:8px;border:1px solid var(--line);cursor:pointer;background:var(--surface-2);color:var(--ink-soft);white-space:nowrap;}
+  .pills input{display:none;}
+  .pills.mom input:checked+label{background:var(--brand);border-color:var(--brand);color:#fff;}
+  .pills.gen input:checked+label{background:var(--ink-soft);border-color:var(--ink-soft);color:#fff;}
+  .pills .mp-seg input:checked+label{background:var(--seg);border-color:var(--seg);color:#fff;}
+  .pills .mp-ego input:checked+label{background:var(--ego);border-color:var(--ego);color:#fff;}
+  .pills .mp-soc input:checked+label{background:var(--soc);border-color:var(--soc);color:#fff;}
+  .motivo-desc{font-size:12.5px;color:var(--ink-soft);font-style:italic;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-top:9px;line-height:1.45;}
+  .pilar{margin-bottom:8px;}
+  .pilar-main{font-size:13px;font-weight:600;padding:9px 11px;border-radius:9px;border:1px solid var(--line);cursor:pointer;background:var(--surface-2);color:var(--ink-soft);display:flex;align-items:center;gap:9px;}
+  .pilar-main:has(input:checked){background:var(--accent-soft);border-color:#bfe6d1;color:var(--accent-strong);}
+  .pilar-main input{width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+  .subareas{margin:7px 0 2px 6px;padding-left:11px;border-left:2px solid var(--accent-soft);display:flex;flex-direction:column;gap:4px;}
+  .subareas label{font-size:12.5px;font-weight:500;color:var(--ink-soft);display:flex;align-items:center;gap:8px;cursor:pointer;padding:3px 5px;border-radius:6px;}
+  .subareas label:hover{background:var(--surface-2);}
+  .subareas input{width:15px;height:15px;accent-color:var(--accent);flex-shrink:0;}
+  .wa-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+  .wa-bar .mtag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent-strong);}
+  .wa-chat{background:var(--wa-bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;min-height:120px;background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 0);background-size:18px 18px;}
+  .bubble{position:relative;align-self:flex-end;max-width:90%;background:var(--wa);border:1px solid var(--wa-line);border-radius:12px 12px 4px 12px;padding:9px 58px 9px 13px;font-size:13.7px;line-height:1.5;cursor:pointer;box-shadow:0 1px 1px rgba(0,0,0,.05);transition:.12s;word-break:break-word;}
+  .bubble:hover{filter:brightness(1.02);border-color:var(--accent);}
+  .bubble .cp{position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:6px;border:1px solid var(--wa-line);background:#fff;display:grid;place-items:center;font-size:11px;color:var(--ink-faint);}
+  .bubble:hover .cp{color:var(--accent-strong);border-color:var(--accent);}
+  .bubble .lnk{color:var(--ego);text-decoration:underline;word-break:break-all;}
+  .res{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:10px;background:var(--surface-2);transition:.15s;}
+  .res:hover{border-color:var(--accent);background:#fff;box-shadow:var(--shadow-sm);}
+  .res.pend{opacity:.7;cursor:default;}
+  .res-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .res-name{font-weight:600;font-size:13.5px;line-height:1.25;}
+  .res-src{margin-left:auto;flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:var(--surface-3);color:var(--ink-soft);}
+  .src-Canva{background:#efeafe;color:#6b3fd1;} .src-Drive{background:#e6f0fb;color:#2766c2;}
+  .src-Notion{background:#f0eeec;color:#4a4742;} .src-Landing{background:var(--accent-soft);color:var(--accent-strong);}
+  .res-why{font-size:12px;color:var(--ink-soft);line-height:1.45;}
+  .res-tag{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:99px;color:var(--brand);background:var(--accent-soft);}
+  .res-hint{font-size:11.5px;color:var(--ink-faint);margin-bottom:9px;}
+  .res2{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:10px 11px;margin-bottom:9px;background:var(--surface-2);transition:.15s;}
+  .res2:has(.res-sel:checked){border-color:var(--accent);background:#fff;box-shadow:var(--shadow-sm);}
+  .res2.pend{opacity:.6;}
+  .res2-pick{flex-shrink:0;padding-top:1px;}
+  .res2-pick input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;}
+  .res2-body{flex:1;min-width:0;}
+  .res-open{margin-left:6px;flex-shrink:0;text-decoration:none;color:var(--ego);font-weight:700;}
+  .res-pendmark{font-size:15px;}
+  .res-pend{color:var(--warm);background:var(--warm-soft);}
+  /* Buscador + filtros + contador (Recursos a enviar) */
+  .res-filters{position:sticky;top:60px;z-index:2;background:var(--surface);padding-bottom:8px;margin-bottom:8px;}
+  .res-q{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-family:var(--sans);font-size:13px;background:var(--surface-2);outline:none;color:var(--ink);}
+  .res-q:focus{border-color:var(--accent);background:#fff;}
+  .res-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+  .res-chip{font-size:11px;font-weight:600;padding:4px 9px;border-radius:99px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-soft);cursor:pointer;}
+  .res-chip:hover{border-color:var(--ink-faint);}
+  .res-chip.on{background:var(--accent-soft);border-color:#bfe6d1;color:var(--accent-strong);}
+  .res-count{font-size:11.5px;color:var(--ink-soft);margin-top:8px;font-weight:600;}
+  .res-count .rc-pend{color:var(--warm);}
+  .res-pedir{margin-top:6px;font-size:11px;font-weight:700;border:1px solid #f1dcc0;background:var(--warm-soft);color:var(--warm);border-radius:7px;padding:4px 9px;cursor:pointer;}
+  .res-pedir:hover{filter:brightness(.97);}
+  .res-pedir.done{opacity:.6;cursor:default;}
+  .res2.obj-match{border-color:var(--ego);box-shadow:0 0 0 2px rgba(37,99,196,.12);}
+  .res-objbadge{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:99px;color:var(--ego);background:#e7eefb;}
+  /* Mándale también (bajo la objeción) */
+  .obj-recos{margin-top:12px;}
+  .obj-recos-lbl{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px;}
+  .obj-reco{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;padding:7px 9px;margin-bottom:6px;background:var(--surface-2);font-size:12.5px;text-decoration:none;color:inherit;}
+  .obj-reco.can:hover{border-color:var(--accent);background:#fff;}
+  .obj-reco.pend{opacity:.85;cursor:default;}
+  .obj-reco .or-tag{margin-left:auto;flex-shrink:0;font-size:9.5px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:99px;}
+  .obj-reco .or-tag.can{background:var(--accent-soft);color:var(--accent-strong);}
+  .obj-reco .or-tag.pend{background:var(--warm-soft);color:var(--warm);}
+  /* Selector de buyer persona */
+  .persona-bar{margin-bottom:14px;}
+  .persona-hint{font-size:11.5px;color:var(--ink-faint);margin-bottom:7px;}
+  .persona-chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .persona-chip{font-size:12px;font-weight:600;padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-soft);cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .persona-chip:hover{border-color:var(--ink-faint);}
+  .persona-chip.on{background:var(--brand);border-color:var(--brand);color:#fff;}
+  /* Objeciones */
+  .section{margin-top:18px;}
+  .obj-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+  .obj-chip{font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-soft);cursor:pointer;}
+  .obj-chip:hover{border-color:var(--ink-faint);}
+  .obj-chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:14px;}
+  @media(max-width:760px){.obj-grid{grid-template-columns:1fr;}}
+  .obj-grid b{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);} .obj-grid p{margin:3px 0 0;font-size:13px;color:var(--ink);line-height:1.45;}
+  .obj-wa-label{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;}
+  .obj-bubble{align-self:flex-start;max-width:100%;background:var(--wa);border:1px solid var(--wa-line);}
+  /* Manager */
+  .mgr{display:none;} .mgr.show{display:block;}
+  .mgr-head{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px;}
+  .mgr-row{border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:9px;background:var(--surface-2);}
+  .mgr-row input[type=text],.mgr-row select{border:1px solid var(--line);border-radius:7px;padding:7px 9px;font-family:var(--sans);font-size:13px;background:#fff;color:var(--ink);}
+  .mgr-r1{display:flex;gap:8px;align-items:center;} .mgr-r1 input{flex:1;}
+  .mgr-r2{display:flex;gap:8px;align-items:center;margin-top:7px;} .mgr-r2 select{flex:1;}
+  .mgr-src{font-size:10px;font-weight:700;text-transform:uppercase;color:var(--ink-faint);padding:3px 8px;border:1px solid var(--line);border-radius:99px;white-space:nowrap;}
+  .mgr-chks{font-size:12px;color:var(--ink-faint);margin-top:7px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .mgr-chk{display:inline-flex;gap:4px;align-items:center;color:var(--ink-soft);font-weight:500;}
+  .mgr-r3{margin-top:7px;} .mgr-r3 input{width:100%;}
+  .mgr-del{border:1px solid var(--line);background:#fff;border-radius:7px;width:30px;height:30px;cursor:pointer;color:var(--danger);flex-shrink:0;}
+  .mgr-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;max-height:560px;overflow-y:auto;}
+  .mgr-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:780px;}
+  .mgr-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);padding:7px 8px;border-bottom:1px solid var(--line);background:var(--surface-2);white-space:nowrap;position:sticky;top:0;z-index:1;}
+  .mgr-table td{padding:5px 8px;border-bottom:1px solid var(--surface-3);vertical-align:middle;}
+  .mgr-table tr:hover td{background:var(--surface-2);}
+  .mgr-table input[type=text]{width:100%;min-width:130px;border:1px solid var(--line);border-radius:6px;padding:5px 7px;font-family:var(--sans);font-size:12.5px;background:#fff;color:var(--ink);}
+  .mgr-table select{border:1px solid var(--line);border-radius:6px;padding:4px 5px;font-size:12px;background:#fff;color:var(--ink);}
+  .mgr-cat{font-size:10px;font-weight:700;text-transform:uppercase;color:var(--ink-soft);background:var(--surface-3);padding:2px 7px;border-radius:99px;white-space:nowrap;}
+  .mgr-chip{font-size:10px;font-weight:700;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-faint);border-radius:99px;padding:2px 6px;cursor:pointer;margin:1px;}
+  .mgr-chip.on{background:var(--accent-soft);border-color:#bfe6d1;color:var(--accent-strong);}
+  .est-ok{color:var(--accent-strong);font-weight:700;white-space:nowrap;} .est-pend{color:var(--warm);font-weight:700;white-space:nowrap;}
+  .mgr-search{border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-family:var(--sans);font-size:12.5px;background:#fff;color:var(--ink);min-width:170px;}
+  .mgr-folder td{cursor:pointer;background:var(--surface-2);padding:0;border-bottom:1px solid var(--line);}
+  .mgr-folder:hover td{background:var(--surface-3);}
+  .fld-h{display:flex;align-items:center;gap:9px;padding:9px 11px;font-weight:700;color:var(--ink);font-size:12.5px;user-select:none;}
+  .fld-ic{font-size:15px;line-height:1;}
+  .fld-count{font-weight:600;color:var(--ink-faint);font-size:11px;}
+  .fld-pend{color:var(--warm);font-weight:800;}
+  .fld-chev{margin-left:auto;color:var(--ink-faint);font-size:13px;transition:transform .15s;}
+  .mgr-folder.open .fld-chev{transform:rotate(90deg);}
+  .hs-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:10px 12px;border:1px dashed var(--line);border-radius:11px;background:var(--surface-2);}
+  .hs-ic{font-size:15px;line-height:1;}
+  .hs-url{flex:1;min-width:120px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-family:var(--sans);font-size:13px;background:#fff;color:var(--ink);}
+  .hs-hint{font-size:11.5px;color:var(--ink-faint);margin:0 2px 12px;line-height:1.4;}
+  .hs-hint.ok{color:var(--accent-strong);} .hs-hint.warn{color:var(--warm);} .hs-hint.load{color:var(--ink-soft);}
+  .hs-hint a{color:var(--accent-strong);font-weight:600;}
+  .inc-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0 0 12px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);}
+  .inc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-faint);}
+  .inc-tog{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink);cursor:pointer;user-select:none;}
+  .inc-tog input{accent-color:var(--accent-strong);cursor:pointer;width:15px;height:15px;}
+  .precio-cfg{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 12px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:12.5px;}
+  .precio-cfg .pc-l{display:inline-flex;align-items:center;gap:6px;color:var(--ink);}
+  .precio-cfg select,.precio-cfg input{border:1px solid var(--line);border-radius:7px;padding:5px 7px;font-family:var(--sans);font-size:12.5px;background:#fff;color:var(--ink);}
+  .precio-cfg input[type=number]{width:64px;}
+  .precio-cfg .pc-only{font-weight:600;color:var(--ink-soft);}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 18px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:20;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .empty-hint{color:var(--ink-faint);font-size:13px;padding:10px 0;}
+  /* === WhatsApp grupos === */
+  .wa-group{margin-bottom:14px;border-left:3px solid var(--motivo-color,var(--accent));padding-left:11px;}
+  .wa-group+.wa-group{border-top:1px dashed var(--line);padding-top:14px;margin-top:14px;}
+  .wa-ghead{display:flex;align-items:center;gap:8px;margin:0 0 8px;}
+  .wa-gtitle{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--motivo-color,var(--ink-soft));}
+  .wa-gcount{font-size:11px;color:var(--ink-faint);}
+  .wa-ghint{font-size:11.5px;color:var(--ink-faint);line-height:1.4;margin:-4px 0 9px;}
+  .wa-copygroup{margin-left:auto;}
+  .wa-bubbles{display:flex;flex-direction:column;gap:9px;}
+  .wa-step{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-faint);margin-bottom:5px;}
+  .wa-vn{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--brand);background:var(--accent-soft);border-radius:99px;padding:2px 8px;margin-bottom:6px;}
+  .bubble .bub-txt{display:block;}
+  .bubble .ed{position:absolute;top:7px;right:33px;width:22px;height:22px;border-radius:6px;border:1px solid var(--wa-line);background:#fff;display:grid;place-items:center;font-size:11px;color:var(--ink-faint);cursor:pointer;}
+  .bubble:hover .ed{color:var(--accent-strong);border-color:var(--accent);}
+  .bubble.editing{background:#fff;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);cursor:text;}
+  .bubble.editing .bub-txt{outline:none;}
+  .bubble.copied{border-color:var(--accent);}
+  .bubble.copied .cp{color:#fff;background:var(--accent);border-color:var(--accent);}
+  .mt-seguridad{background:#e4f3ea;color:var(--seg);}
+  .mt-ego{background:#e7eefb;color:var(--ego);}
+  .mt-social{background:#fbf0df;color:var(--soc);}
+  .pills.mom{flex-wrap:wrap;}
+  .pills.mom>span{flex:1 1 calc(50% - 6px);min-width:64px;}
+  .pills.mom label{font-size:12px;padding:8px 4px;}
+  /* Jerarquía: WhatsApp es el protagonista (realce sutil); Lectura y Recursos son apoyo */
+  .col-wa{box-shadow:0 6px 22px rgba(20,40,30,.09);border-color:#cdd8d0;}
+  .col-wa>h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:99px;background:var(--accent);margin-right:8px;vertical-align:middle;box-shadow:0 0 0 3px var(--accent-soft);}
+  @media(max-width:1080px){ .cols{grid-template-columns:1fr;} .col-wa{order:-1;} .col-lectura{order:1;} .col-recursos{order:2;} }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand-logo">
+      <div class="brand-mark">E</div>
+      <div><div class="brand-name">FP<span> Mensaje</span></div><div class="brand-tag">Explora FP × Ucademy · post-llamada</div></div>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-sm" id="btn-manager">⚙ Repertorio de documentación</button>
+      <div class="badge-demo">PROTOTIPO</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="intro">
+      <h1>¿Qué le mando por WhatsApp tras la llamada?</h1>
+      <p>Escribe la <b>motivación</b> del cliente y su <b>contexto personal</b>. El asistente detecta su <b>motivo</b> y <b>pilares</b>, despliega las <b>sub-áreas</b> que tocasteis, y te prepara los <b>mensajes de WhatsApp</b> en nombre de Explora FP × Ucademy.</p>
+      <div class="motor-note"><span class="dot"></span> Mensajes nativos de WhatsApp. Usan motivo, pilares, sub-áreas, formación, género y contexto. Los documentos salen del repertorio editable del manager.</div>
+    </div>
+
+    <!-- Repertorio del manager -->
+    <div class="card panel mgr section" id="manager" style="margin-bottom:18px">
+      <div class="mgr-head">
+        <div><h3 style="margin:0">Repertorio de recursos</h3><div class="sub" style="margin:2px 0 0">Backlog para marketing, <b>organizado por carpetas</b>. <b id="mgr-count"></b> · pulsa una carpeta para abrirla; pega el enlace cuando se cree (lo vacío sale «pendiente»). Se guarda en este navegador.</div></div>
+        <div class="spacer"></div>
+        <input id="mgr-search" class="mgr-search" type="text" placeholder="🔎 Buscar recurso…">
+        <select id="mgr-filter" class="btn btn-sm" style="cursor:pointer"><option value="todos">Ver: todos</option><option value="pendientes">Solo pendientes</option><option value="creados">Solo creados</option></select>
+        <button class="btn btn-sm" id="mgr-toggleall">Expandir todo</button>
+        <button class="btn btn-sm" id="mgr-copy">📋 Copiar lista para marketing</button>
+        <button class="btn btn-sm" id="mgr-reset">Restablecer</button>
+        <button class="btn btn-sm btn-primary" id="mgr-add">+ Añadir</button>
+      </div>
+      <div id="mgr-list"></div>
+    </div>
+
+    <div class="card input-card">
+      <div class="hs-bar">
+        <span class="hs-ic">🟠</span>
+        <input type="text" id="hs-url" class="hs-url" placeholder="Pega la URL del negocio de HubSpot y traigo motivación y contexto…">
+        <button class="btn btn-primary btn-sm" id="hs-fetch">Traer del CRM</button>
+        <button class="btn btn-sm" id="hs-config" title="Configurar conexión con HubSpot">⚙︎</button>
+      </div>
+      <div class="hs-hint" id="hs-hint"></div>
+      <div class="in-grid">
+        <div><label class="label" for="motivacion">1 · Motivación del cliente por hacer la FP</label>
+          <textarea id="motivacion" placeholder="¿Por qué quiere hacer la FP? ¿Qué busca de fondo?"></textarea></div>
+        <div><label class="label" for="contexto">2 · Contexto personal</label>
+          <textarea id="contexto" placeholder="Situación, trabajo, familia, frenos, lo que dijo en la llamada…"></textarea></div>
+      </div>
+      <div class="input-actions">
+        <span class="ex-label">Ejemplos:</span>
+        <button class="btn btn-sm" data-ex="seguridad">Seguridad</button>
+        <button class="btn btn-sm" data-ex="ego">Ego</button>
+        <button class="btn btn-sm" data-ex="social">Social</button>
+        <div class="spacer"></div>
+        <button class="btn btn-primary" id="analyzeBtn">Generar mensajes →</button>
+      </div>
+    </div>
+
+    <div id="results">
+      <div class="cols">
+        <div class="card panel col-lectura">
+          <h3>Lectura de la llamada</h3>
+          <p class="sub">Claude deja la llamada <b>leída</b> (motivo, pilares, sub-áreas y recursos) desde el contexto del negocio. Revisa y ajusta lo que quieras: género, formación o las marcas.</p>
+          <div class="field"><label>Nombre del lead</label><input type="text" id="f-nombre" placeholder="(escríbelo)"></div>
+          <div class="field"><label>Comercial (propietario del negocio)</label><input type="text" id="f-comercial" placeholder="(se trae de HubSpot; firma el mensaje)"></div>
+          <div class="field"><label>Formación de interés</label><select id="f-formacion"></select></div>
+          <div class="field">
+            <label>Género (para el tono)</label>
+            <div class="pills gen" id="f-genero">
+              <span><input type="radio" name="gen" id="g-f" value="fem"><label for="g-f">Mujer</label></span>
+              <span><input type="radio" name="gen" id="g-m" value="masc"><label for="g-m">Hombre</label></span>
+              <span><input type="radio" name="gen" id="g-n" value="neu"><label for="g-n">Neutro</label></span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Momento</label>
+            <div class="pills mom" id="f-momento">
+              <span><input type="radio" name="mom" id="mo-1" value="primera"><label for="mo-1">Primera</label></span>
+              <span><input type="radio" name="mom" id="mo-2" value="seguimiento"><label for="mo-2">Seguimiento</label></span>
+              <span><input type="radio" name="mom" id="mo-3" value="cierre"><label for="mo-3">Cierre</label></span>
+              <span><input type="radio" name="mom" id="mo-4" value="reactivacion"><label for="mo-4">Reactivar</label></span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Motivo ulterior</label>
+            <div class="pills" id="f-motivo">
+              <span class="mp-seg"><input type="radio" name="motivo" id="m-seg" value="seguridad"><label for="m-seg">Seguridad</label></span>
+              <span class="mp-ego"><input type="radio" name="motivo" id="m-ego" value="ego"><label for="m-ego">Ego</label></span>
+              <span class="mp-soc"><input type="radio" name="motivo" id="m-soc" value="social"><label for="m-soc">Social</label></span>
+            </div>
+            <div class="motivo-desc" id="motivo-desc"></div>
+          </div>
+          <div class="field"><label>Pilares y sub-áreas que le mueven</label><div id="f-pilares"></div></div>
+          <div class="field"><label>Próximo contacto (día y hora acordados)</label>
+            <div class="row2"><input type="date" id="f-fecha" style="flex:1"><input type="time" id="f-hora" style="width:108px"></div>
+          </div>
+          <div class="field"><label>Inicio del grupo (opcional)</label><input type="date" id="f-inicio"></div>
+        </div>
+
+        <div class="card panel col-wa">
+          <h3>Mensajes de WhatsApp</h3>
+          <p class="sub">Clic en un mensaje para copiarlo. El lápiz ✎ lo abre para ajustar una palabra antes de enviarlo.</p>
+          <div class="wa-bar">
+            <span class="mtag" id="wa-mtag"></span>
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="copyAll">Copiar todos</button>
+          </div>
+          <div class="wa-chat" id="wa-body"></div>
+        </div>
+
+        <div class="card panel col-recursos">
+          <h3>Recursos a enviar</h3>
+          <p class="sub">Del repertorio, según formación, motivo y pilar.</p>
+          <div class="inc-group" id="inc-group">
+            <span class="inc-label">Incluir en el mensaje:</span>
+            <label class="inc-tog"><input type="checkbox" id="inc-prox" checked> 📞 Cuándo volvemos a hablar</label>
+            <label class="inc-tog"><input type="checkbox" id="inc-dossier" checked> 📄 Dosier</label>
+            <label class="inc-tog"><input type="checkbox" id="inc-presu"> 💶 Presupuesto</label>
+            <label class="inc-tog"><input type="checkbox" id="inc-precio"> 🏷️ Precio / cuotas</label>
+          </div>
+          <div class="precio-cfg" id="precio-cfg" style="display:none"></div>
+          <div id="resources"></div>
+        </div>
+      </div>
+
+      <!-- Objeciones -->
+      <div class="card panel section">
+        <h3>Si te pone una objeción…</h3>
+        <p class="sub">Guion del pitch + mensaje de WhatsApp listo para esa objeción (se adapta al género del lead).</p>
+        <div class="obj-chips" id="obj-chips"></div>
+        <div id="obj-detail"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+/* ===== Formaciones → rama ===== */
+const FORMACIONES = [
+  ['Gestión Administrativa GM','Administración / Gestión'],
+  ['Administración y Finanzas GS','Administración / Gestión'],
+  ['Asistencia a la Dirección GS','Administración / Gestión'],
+  ['DOBLE Administración y Finanzas + Asistencia a la Dirección','Administración / Gestión'],
+  ['Marketing y Publicidad GS','Comercio / Marketing'],
+  ['Comercio Internacional GS','Comercio / Marketing'],
+  ['Transporte y Logística GS','Comercio / Marketing'],
+  ['DOBLE Comercio + Transporte','Comercio / Marketing'],
+  ['SMR GM','Tecnología / Informática'],
+  ['DAM GS','Tecnología / Informática'],
+  ['DAW GS','Tecnología / Informática'],
+  ['ASIR GS','Tecnología / Informática'],
+  ['DOBLE DAM + DAW','Tecnología / Informática'],
+  ['TCAE GM','Sanidad'],
+  ['Laboratorio GS','Sanidad'],
+  ['Anatomía GS','Sanidad'],
+  ['Nutrición y Dietética GS','Sanidad'],
+  ['DOBLE Laboratorio + Anatomía','Sanidad'],
+  ['Educación Infantil GS','Educación Infantil']
+];
+const RAMA_OF = Object.fromEntries(FORMACIONES.map(([v,r])=>[v,r]));
+/* ===== Precios y financiación (sin intereses; al contado con descuento) ===== */
+const PRECIOS = {
+  'Gestión Administrativa GM':{ciclo:[3279,3479],unanio:[2279,2379],m:24,solo1:true},
+  'Administración y Finanzas GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24},
+  'Asistencia a la Dirección GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24,solo1:true},
+  'DOBLE Administración y Finanzas + Asistencia a la Dirección':{bundle:[4499,4999],m:30},
+  'Marketing y Publicidad GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24},
+  'Comercio Internacional GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24,solo1:true},
+  'Transporte y Logística GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24,solo1:true},
+  'DOBLE Comercio + Transporte':{bundle:[4499,4999],m:30},
+  'SMR GM':{ciclo:[3279,3479],unanio:[2279,2279],m:24,solo1:true},
+  'DAM GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24},
+  'DAW GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24},
+  'ASIR GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24},
+  'DOBLE DAM + DAW':{bundle:[4499,4999],m:30},
+  'TCAE GM':{ciclo:[2479,2679],unanio:null,m:24},
+  'Laboratorio GS':{ciclo:[3479,3679],unanio:[2279,2479],m:24},
+  'Anatomía GS':{ciclo:[3479,3679],unanio:[2279,2479],m:24},
+  'Nutrición y Dietética GS':{ciclo:[3279,3479],unanio:[2279,2379],m:24},
+  'DOBLE Laboratorio + Anatomía':{bundle:[4999,5499],m:30},
+  'Educación Infantil GS':{ciclo:[3279,3479],unanio:[2279,2479],m:24,solo1:true}
+};
+function fmtEur(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+function planesDe(f){ const P=PRECIOS[f]; if(!P) return null; if(P.bundle) return {meses:P.m,solo1:false,planes:[{key:'bundle',label:'Doble titulación (3 años)',c:P.bundle[0],fin:P.bundle[1]}]}; const planes=[{key:'ciclo',label:'Ciclo completo (2 años)',c:P.ciclo[0],fin:P.ciclo[1]}]; if(P.unanio) planes.push({key:'unanio',label:'1 año',c:P.unanio[0],fin:P.unanio[1]}); return {meses:P.m,solo1:!!P.solo1,planes:planes}; }
+function planPorDefecto(info){ if(!info) return ''; if(info.solo1){ const u=info.planes.find(p=>p.key==='unanio'); if(u) return 'unanio'; } return info.planes[0].key; }
+function precioLinea(s){
+  const info=planesDe(s.formacion); if(!info) return '';
+  const key=(s.precioPlan && info.planes.some(p=>p.key===s.precioPlan))?s.precioPlan:planPorDefecto(info);
+  const pl=info.planes.find(p=>p.key===key)||info.planes[0];
+  const cuotas=(+s.cuotas>0)?+s.cuotas:info.meses;
+  const mes=Math.round(pl.fin/cuotas);
+  const ahorro=pl.fin-pl.c;
+  const lbl=info.planes.length>1?(' ('+pl.label.toLowerCase()+')'):'';
+  let t='Y sobre la inversión'+lbl+': al contado son '+fmtEur(pl.c)+'€';
+  if(ahorro>0) t+=' (te ahorras '+fmtEur(ahorro)+'€ frente a financiarlo)';
+  t+=', o sin intereses en '+cuotas+' cuotas de '+fmtEur(mes)+'€/mes. Tú eliges 👍';
+  return t;
+}
+const RAMAS = ['Tecnología / Informática','Sanidad','Comercio / Marketing','Administración / Gestión','Educación Infantil'];
+const ramaOf = f => RAMA_OF[f] || '';
+function cleanForm(f){ return (f||'').replace(/\s+(GM|GS)\b/g,'').replace(/^DOBLE\s+/i,'Doble ').trim(); }
+function formMention(f){ if(!f) return 'la FP'; const c=cleanForm(f); if(/^doble/i.test(c)) return 'la doble titulación de '+c.replace(/^doble\s*/i,''); return 'la FP de '+c; }
+function formName(f){ return f ? cleanForm(f) : 'tu formación'; }
+
+/* ===== Dosier por formación ===== */
+const NOTION_BANK='https://app.notion.com/p/32fea97508c0803d80dcd61d7203fba7';
+const DOSSIER_LINKS={
+  'Gestión Administrativa GM':{link:'https://drive.google.com/file/d/1jMq353V4jmP3g6cjRuaMEgEnq_PhO-YW/view',canva:false,fuente:'Drive'},
+  'Administración y Finanzas GS':{link:'https://drive.google.com/file/d/1KVNE7a8i-qM5MB9zNAwxDtd7oHk_IOlj/view',canva:false,fuente:'Drive'},
+  'Asistencia a la Dirección GS':{link:'https://drive.google.com/file/d/1-roSojG7Dt1abkfWabViMQB8MEpQgS1T/view',canva:false,fuente:'Drive'},
+  'DOBLE Administración y Finanzas + Asistencia a la Dirección':{link:'https://drive.google.com/file/d/1eHdX1MO8em1E2IQqFYEt_mGTHZAO4um-/view',canva:false,fuente:'Drive'},
+  'Marketing y Publicidad GS':{link:'https://drive.google.com/file/d/1Dfv8vFl1dMRp1jqSnCT_kslyPIuqa5sO/view',canva:false,fuente:'Drive'},
+  'Comercio Internacional GS':{link:'https://drive.google.com/file/d/15ivh1p3aGT-3pSyVufvwx1HNKVqaT_JV/view',canva:false,fuente:'Drive'},
+  'Transporte y Logística GS':{link:'https://drive.google.com/file/d/1D7K3egAS9EQczngkO4-VkJvaawYTOiyc/view',canva:false,fuente:'Drive'}
+};
+function dossierFor(f){ if(!f) return null; const meta=DOSSIER_LINKS[f]; if(meta) return {id:'dossier',tipo:'dossier',nombre:'Dosier '+cleanForm(f),...meta,porque:'Dosier oficial de Explora FP de la formación seleccionada.'}; return {id:'dossier',tipo:'dossier',nombre:'Dosier '+cleanForm(f),link:'',canva:false,fuente:'',pendiente:true,porque:'Dosier de Explora FP pendiente: marketing aún no lo ha subido para esta formación.'}; }
+
+/* ===== Motivos / pilares ===== */
+const MOTIVOS = {
+  seguridad:{ desc:'El que busca dormir tranquilo: estabilidad, control, valerse solo. Llega desde el susto, no desde la ambición.',
+    keys:['seguro','segura','estable','estabilidad','tranquil','salir adelante','salir de','valerse','susto','despido','miedo','sere capaz','sera capaz','garantia','control','proteg','mis hijos','para toda la vida','quemad','harto','harta','dormir tranquil'] },
+  ego:{ desc:'El que tiene que demostrar: quiere recuperar el sitio que cree merecer. Orgullo herido, alguien con menos le adelantó.',
+    keys:['salto','estancad','merezco','merec','los demas','mejor puesto','mandar','valoren','ascend','ganar mas','reconoc','orgullo','destac','adelanto','el doble','sueldo','crecer','lider','los mejores','ambicio','superar','demostrar'] },
+  social:{ desc:'El que quiere pertenecer y que le vean: le importa la mirada de los demás. Le engancha la comunidad.',
+    keys:['ser alguien','el sector','reconozca','la gente','pertenec','comunidad','vocacion','ayudar','que le vean','amigos','no me fio','esto vale','legitim','circulo','con ninos','juntos','acompañad','solo','sola'] }
+};
+const PILAR_LABEL = { insercion:'Inserción laboral', costes:'Accesibilidad en los costes', autonomia:'Autonomía en el estudio' };
+const PILAR_KEYS = {
+  insercion:['trabaj','empleo','practica','salida','contrat','puesto','colocar','empresa','insercion','empleab','laboral','curriculum','cv'],
+  costes:['precio','dinero','caro','permitir','beca','cuota','fraccion','coste','economic','matricula','pagar','invertir','ahorr','presupuesto'],
+  autonomia:['tiempo','online','ritmo','flexib','compaginar','sin dejar','coach','acompañ','acompan','horario','desde casa','autonomia','conciliar','sin estudiar','metodologia']
+};
+// Cada sub-área tiene 'frag': una frase corta y combinable que se teje en el mensaje común.
+const SUBAREAS = {
+  seguridad:{
+    insercion:[
+      {t:'Empleabilidad probada', frag:'9 de cada 10 de los nuestros están trabajando en menos de 3 meses', wa:'9 de cada 10 de los nuestros están trabajando en menos de 3 meses 🙌 No es estudiar por estudiar: es saber que el año que viene estás colocado/a.'},
+      {t:'Entrevistas garantizadas', frag:'las prácticas en empresa van garantizadas y eliges tú dónde', wa:'Te garantizamos las prácticas en empresa dentro del título, así que no sales a buscar trabajo a ciegas, y eliges tú dónde.'},
+      {t:'Profes que contratan', frag:'te formas con profes en activo que contratan en el sector', wa:'Tus profes están en activo y contratan en el sector: te formas con quien mañana te puede dar el puesto.'}],
+    costes:[
+      {t:'Online, coste ajustado', frag:'al ser 100% online te lo puedes permitir sin tocar lo de casa', wa:'Al ser 100% online el ahorro va a tu bolsillo, con cuotas pensadas para que te lo puedas permitir hoy, no cuando toque la lotería.'},
+      {t:'Becas y ayudas', frag:'miramos becas y ayudas para tu caso, así el dinero no te frena', wa:'Miramos tu caso para ver a qué becas puedes acceder. El dinero no va a ser lo que te frene, eso te lo aseguro.'},
+      {t:'Matrícula gratuita', frag:'la matrícula está gratis esta convocatoria y fraccionamos el pago a tu medida', wa:'La matrícula está gratis en esta convocatoria y, si hace falta, fraccionamos el pago a tu medida. Empiezas sin tocar lo de casa.'}],
+    autonomia:[
+      {t:'Sin dejar tu vida', frag:'lo haces a tu ritmo, sin dejar tu trabajo ni a los tuyos', wa:'Tú marcas el ritmo: te formas sin dejar tu trabajo ni desatender a los tuyos. Clases de 10 min y, si un día no puedes, el contenido te espera.'},
+      {t:'Acompañamiento', frag:'empiezas desde cero y con un coach que no te suelta, así que no vas a estar solo/a', wa:'No vas a estar solo/a ni un día: coach desde el minuto uno y, si te despistas, te llamamos nosotros. Empiezas con un módulo de cero para coger confianza 🙂'},
+      {t:'Evaluación 70-20-10', frag:'no te lo juegas todo a un examen, porque llegas con el 90% ya hecho', wa:'Y no te lo juegas todo a un examen: el 70% lo vas haciendo poco a poco y llegas al examen con el 90% ya ganado.'}]
+  },
+  ego:{
+    insercion:[
+      {t:'El talento tiene recorrido', frag:'los mejores de cada promoción acaban trabajando con nosotros o con nuestras empresas', wa:'Los mejores de cada promoción acaban con nosotros o con nuestras empresas. Si vienes a darlo todo, aquí no te pones techo 🚀'},
+      {t:'Prácticas a tu medida', frag:'las prácticas se asignan según tu perfil y eliges tú dónde destacar', wa:'Las prácticas se asignan según tu perfil: no vas a cualquier sitio, vas donde encaja tu ambición. Eliges tú dónde destacar.'},
+      {t:'Formamos para el puesto', frag:'el temario lo diseñamos con las empresas que luego contratan', wa:'El temario lo diseñamos con las empresas que luego contratan, Workcamp de IA incluido. Nada de papeles enmarcados.'}],
+    costes:[
+      {t:'Grupo 1, acceso preferente', frag:'entrando ahora eres del grupo 1, con acceso preferente a lo mejor', wa:'Entrar pronto no es solo precio: el grupo 1 tiene acceso preferente a lo mejor, a las prácticas y al contenido. Eres de los primeros, no uno más de la lista 🔥'},
+      {t:'Destacar abre puertas', frag:'aquí la mejor nota elige prácticas primero', wa:'Aquí la mejor nota elige prácticas primero. Tu esfuerzo se nota desde el principio y se recompensa.'},
+      {t:'Invertir, no esperar', frag:'al contado entras con descuento y lo conviertes en tu próximo sueldo', wa:'El dinero parado pierde valor; esto lo conviertes en tu próximo sueldo. Y al contado entras con descuento: quien decide rápido, gana ahí también.'}],
+    autonomia:[
+      {t:'Contenido exclusivo', frag:'te llevas IA propia, certificaciones IBM y contenido que tu competencia no va a tener', wa:'Te llevas contenido vitalicio, certificaciones IBM y a Umy, nuestra IA propia que te resuelve dudas en segundos. Herramientas que tu competencia no va a tener 🚀'},
+      {t:'Tú pones el nivel', frag:'metemos IA y talleres por encima de lo oficial, así que el techo lo pones tú', wa:'Metemos IA, IBM y talleres por encima de la guía del Ministerio. Si quieres ir más allá del resto, aquí tienes por dónde: el techo lo pones tú.'},
+      {t:'Evaluación 70-20-10', frag:'demuestras lo que vales a lo largo del curso, no en una sola mañana', wa:'Demuestras lo que vales a lo largo de todo el curso; el examen es solo el último sello, no la prueba que decide si vales.'}]
+  },
+  social:{
+    insercion:[
+      {t:'Red de profesionales', frag:'entras en una red de profesionales en activo, no en un aula aislada', wa:'Entras a una red de profesionales en activo, no a un aula aislada: gente que ya vive lo que tú quieres hacer y con la que seguirás en contacto.'},
+      {t:'Aprender de quien lo vive', frag:'aprendes de profes que están metidos en el sector hoy', wa:'Tus profes están metidos en el sector hoy: aprendes el oficio real. Imagínate contarles a los tuyos que ya estás dentro 💚'}],
+    costes:[
+      {t:'Comunidad incluida', frag:'la comunidad, el networking y los eventos van incluidos desde el primer día', wa:'La comunidad de exploradores, el networking y los eventos van incluidos: perteneces desde el primer día, sin pagar nada aparte 💚'},
+      {t:'Abierto a todos', frag:'miramos becas y fraccionamos para que el dinero no deje a nadie fuera', wa:'No queremos que el precio deje fuera a quien tiene vocación de verdad: miramos becas y fraccionamos. Mucha gente lo decide en familia, con los suyos detrás.'}],
+    autonomia:[
+      {t:'Coach personalizado', frag:'tienes un asesor personal y un grupo pequeño desde el día uno', wa:'Tienes un asesor personal desde el día uno y un grupo pequeño (de 5 a 7) con el que se participa. Tu vocación deja de ser un plan en solitario.'},
+      {t:'Trato cercano', frag:'aquí eres una persona y no un número, con respuesta el mismo día', wa:'Aquí eres una persona, no un número de expediente. Cuando te venga un bajón o una duda, vas a tener a quién acudir de verdad 💚'},
+      {t:'Evaluación 70-20-10', frag:'avanzas con tu grupo entrega a entrega, así que al examen no llegas solo/a', wa:'Avanzas con tu grupo entrega a entrega, así que al examen no llegas solo/a ni a ciegas: llegas con el camino ya hecho.'}]
+  }
+};
+
+/* ===== Objeciones (guion del pitch + WhatsApp) ===== */
+const OBJECIONES = [
+  { label:'Es mucho dinero', esconde:'Duda del valor o miedo a perder seguridad económica.', pregunta:'¿Es que no te lo puedes permitir o es que no quieres invertir tanto en ti? (y callas)', frase:'No justifiques el precio: dilo y calla. Becas con asesoramiento; el precio es el mismo hoy o en seis meses.', paso:'Cerrar grupo + enlace de matrícula.',
+    recursos:['beca','one-pager-beca-mec-y-ayudas-oficiales-compatib','simulador-de-cuota-tu-programa-en-30-plazos-pr','comparativa-pagar-al-contado-vs-en-30-cuotas-q','one-pager-el-precio-es-fijo-sin-sorpresas-desi'],
+    wa:'Te entiendo. No es un gasto, es lo que te saca de donde no quieres seguir. Miramos becas y, si hace falta, fraccionamos: lo vemos en 5 min por teléfono y decides con todo claro 💪' },
+  { label:'Me lo tengo que pensar', esconde:'Una objeción real no dicha (precio, miedo o decisor).', pregunta:'Claro, ¿qué es exactamente lo que necesitas pensar? (callar)', frase:'Pregúntate cómo vas a hacerlo, no si eres capaz. Decidas sí o no, decídelo hoy: el "ya veré" es un año más igual.', paso:'Resolver la duda real y volver al cierre del grupo.',
+    recursos:['salidas-san','prac','beca'],
+    wa:'Claro. Solo una cosa: pregúntate cómo vas a hacerlo, no si serás capaz 🙂 ¿Qué es lo que más te hace dudar? Lo vemos en una llamada corta y lo dejas resuelto.' },
+  { label:'No tengo tiempo', esconde:'Miedo a no poder sostenerlo.', pregunta:'¿Y cuánto tiempo llevas ya esperando a tener tiempo? (callar)', frase:'100% online, clases de 10 min, descarga offline y un coach que te organiza la semana.', paso:'Empiezas con 10 min al día desde el grupo del (X).',
+    recursos:['mod0','masterIA'],
+    wa:'Es justo lo que mejor tenemos resuelto: 100% online, clases de 10 min y un coach que te organiza la semana. Te llamo y te enseño cómo encaja en tu día a día.' },
+  { label:'Miedo a no ser capaz', esconde:'Inseguridad o baja autoestima.', pregunta:'¿Qué es lo que te hace pensar que no serás capaz?', frase:'90% de empleabilidad porque empezamos con margen y coach desde el día 1; si pasas 3 días sin abrir el campus, te llamamos.', paso:'Grupo (X) con coach con nombre y apellidos.',
+    recursos:['mod0','salidas-san','infografia-9-de-cada-10-colocados-en-menos-de-'],
+    wa:'Esa duda la tiene casi todo el mundo al empezar, y es donde más te acompañamos: empiezas de cero con coach desde el día uno. Te lo cuento en 5 min por teléfono y lo ves claro 🤝' },
+  { label:'No me fío del online', esconde:'Miedo a estar solo / "subir vídeos y desaparecer".', pregunta:'¿Qué es lo que te hace dudar del online en concreto?', frase:'No es subir vídeos y desaparecer: coach desde el día 1, IA "Umy", comunidad y profes en activo.', paso:'Desactivar la duda puntual y cerrar.',
+    recursos:['mod0','infografia-por-que-la-fp-a-distancia-oficial-e'],
+    wa:'Te entiendo, pero esto no es subir vídeos y desaparecer: coach desde el día uno, comunidad y profes en activo. Te llamo y te lo enseño en un momento 💚' },
+  { label:'¿Esto tiene salida?', esconde:'Desconfianza en la promesa de empleo.', pregunta:'¿Y qué pasaría en tu vida si por fin tuvieras esa salida asegurada?', frase:'Título oficial del Ministerio, prácticas garantizadas y profes que contratan.', paso:'Cierre del motivo dominante.',
+    recursos:['salidas-san','prac','infografia-9-de-cada-10-colocados-en-menos-de-','catalogo-de-salidas-profesionales-por-ciclo-qu','one-pager-tu-titulo-de-fp-es-oficial-y-valido-'],
+    wa:'Es título oficial del Ministerio, con prácticas garantizadas y profes que contratan. La salida no te la prometo, te la enseño: lo vemos en una llamada corta 🙌' },
+  { label:'Lo tengo que hablar en casa', esconde:'Falta de capacidad de decisión o tercero de escudo.', pregunta:'¿Ellos te apoyan? ¿Qué es lo que más les preocupa?', frase:'Pásame su nombre y teléfono y cuadramos una llamada los tres; se quedan tranquilos de primera mano.', paso:'Llamada a tres con día y hora.',
+    recursos:['one-pager-para-padres-que-futuro-laboral-le-da','salidas-san','beca'],
+    wa:'¡Me parece genial hablarlo en casa! Si quieres, hacemos una llamada rápida los tres y resuelvo sus dudas de primera mano. Tú dime cuándo os viene bien 😊' },
+  { label:'Me apunto más tarde', esconde:'Falta de urgencia o de compromiso.', pregunta:'¿Tú no querías conseguir (X)? → ¿por qué hacerlo ahora?', frase:'El precio es el mismo y el grupo no; más tarde es lo mismo de caro y peor de plaza. No depende de mí, depende del grupo.', paso:'La plaza del grupo del (X) la dejo a tu nombre ahora.',
+    recursos:['matricula','one-pager-el-precio-es-fijo-sin-sorpresas-desi'],
+    wa:'Te lo digo claro: el precio será el mismo más adelante, pero la plaza y el grupo no. Te llamo y te reservo plaza para que no pierdas esta convocatoria 🚀' },
+  { label:'Otra opción / competencia', esconde:'Desconfianza.', pregunta:'¿Qué tiene esa opción que no tenga Explora FP × Ucademy? (sin nombrarla)', frase:'La guía del Ministerio va por detrás; por eso metemos IBM, IA propia y talleres por encima. Tan importante es estudiar como con quién lo haces.', paso:'Llevar a inserción + acompañamiento.',
+    recursos:['masterIA','infografia-por-que-la-fp-a-distancia-oficial-e','one-pager-tu-titulo-de-fp-es-oficial-y-valido-'],
+    wa:'Lo importante no es solo el temario, sino con quién lo haces: coach desde el día uno y profes que contratan. Te llamo 5 min y lo comparas con todo sobre la mesa 💪' }
+];
+
+/* ===== Buyer personas (chips que dejan la lectura al 80%) =====
+   Cada persona mapea a motivo + pilares + sub-áreas + una objeción y unos
+   recursos estrella. Solo se usan motivos/pilares/sub válidos (ver SUBAREAS)
+   e ids estables de DEFAULT_DOCS: matricula, landing, mod0, masterIA, prac, beca, salidas-san. */
+const PERSONAS = [
+  { label:'Migrante LatAm', emoji:'🌎', motivo:'seguridad', pilares:['insercion','costes'], sub:['insercion|0','costes|1'], objecion:'¿Esto tiene salida?', recursos:['salidas-san','prac'] },
+  { label:'Aislado geográfico', emoji:'🗺️', motivo:'seguridad', pilares:['autonomia','insercion'], sub:['autonomia|0','insercion|1'], objecion:'No me fío del online', recursos:['prac','mod0'] },
+  { label:'Decisor familiar', emoji:'👨‍👩‍👧', motivo:'social', pilares:['insercion','costes'], sub:['insercion|0','costes|1'], objecion:'Lo tengo que hablar en casa', recursos:['salidas-san','beca'] },
+  { label:'Concilia con hijos', emoji:'🧸', motivo:'seguridad', pilares:['autonomia','costes'], sub:['autonomia|0','costes|2'], objecion:'No tengo tiempo', recursos:['mod0','beca'] },
+  { label:'Autónomo a oficializar', emoji:'🏷️', motivo:'ego', pilares:['insercion','autonomia'], sub:['insercion|2','autonomia|1'], objecion:'¿Esto tiene salida?', recursos:['salidas-san','masterIA'] },
+  { label:'Convalidación', emoji:'♻️', motivo:'ego', pilares:['insercion','costes'], sub:['insercion|0','costes|2'], objecion:'Me lo tengo que pensar', recursos:['salidas-san','mod0'] },
+  { label:'Escaldado del online', emoji:'😬', motivo:'seguridad', pilares:['autonomia'], sub:['autonomia|1','autonomia|0'], objecion:'No me fío del online', recursos:['mod0','prac'] },
+  { label:'Empieza de cero', emoji:'🛟', motivo:'seguridad', pilares:['autonomia','insercion'], sub:['autonomia|1','insercion|0'], objecion:'Miedo a no ser capaz', recursos:['mod0','salidas-san'] },
+  { label:'Salto salarial', emoji:'🚀', motivo:'ego', pilares:['insercion','autonomia'], sub:['insercion|0','autonomia|0'], objecion:'Otra opción / competencia', recursos:['masterIA','prac'] },
+  { label:'Vocacional', emoji:'💚', motivo:'social', pilares:['autonomia','insercion'], sub:['autonomia|0','insercion|0'], objecion:'No me fío del online', recursos:['salidas-san','mod0'] },
+  { label:'Sensible al precio', emoji:'💶', motivo:'seguridad', pilares:['costes'], sub:['costes|1','costes|2'], objecion:'Es mucho dinero', recursos:['beca','matricula'] }
+];
+
+/* ===== Repertorio de documentación (editable, persistente) =====
+   Catálogo AMPLIO: la mayoría son "pendientes" (sin enlace) — slots para que
+   el equipo los vaya creando y pegando el enlace. cat = categoría (ordena el mensaje). */
+const DEFAULT_DOCS = [
+  {
+    "id": "matricula",
+    "nombre": "Reservar plaza (matrícula)",
+    "tipo": "matricula",
+    "cat": "matricula",
+    "rama": "",
+    "pilares": [],
+    "motivos": [],
+    "base": true,
+    "prioridad": "Alta",
+    "link": "https://www.explorafp.com/matricula"
+  },
+  {
+    "id": "landing",
+    "nombre": "Landing de admisiones FP",
+    "tipo": "landing",
+    "cat": "landing",
+    "rama": "",
+    "pilares": [],
+    "motivos": [],
+    "base": true,
+    "prioridad": "Media",
+    "link": "https://academia.ucademy.com/direccion-de-admisiones-fp-ucademy/"
+  },
+  {
+    "id": "mod0",
+    "nombre": "Módulo Introductorio (empieza de cero)",
+    "tipo": "one-pager",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1Vn1isjdWOpq8XmvzgfSnqurNYIevQgNn/view"
+  },
+  {
+    "id": "masterIA",
+    "nombre": "Máster de IA — Workcamp IA Business",
+    "tipo": "one-pager",
+    "cat": "ia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/open?id=1FRkoDq8_HHY5UMy34RVqdZTv0lxXoxbv"
+  },
+  {
+    "id": "prac",
+    "nombre": "Prácticas garantizadas (Prácticas Prioritarias)",
+    "tipo": "one-pager",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1Y0xXUoYppdC6u0NryRUuDCDj5R_hP95S/view"
+  },
+  {
+    "id": "beca",
+    "nombre": "Beca Empresa",
+    "tipo": "one-pager",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/18SWZlXICAyq7MK5PvygCY_JdRPk96rw6/view"
+  },
+  {
+    "id": "salidas-san",
+    "nombre": "Salidas profesionales — Sanidad",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1hMp89ZgMSZfqCvxQok8BXlArJAxKHv_u/view"
+  },
+  {
+    "id": "simulador-de-cuota-tu-programa-en-30-plazos-pr",
+    "nombre": "Simulador de cuota: tu programa en 30 plazos (precio → 89€/mes)",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "calculadora-de-cuota-imprimible-one-pager-con-",
+    "nombre": "Calculadora de cuota imprimible (one-pager con tu precio y tu plan)",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "simulador-cuanto-me-queda-al-mes-despues-de-la",
+    "nombre": "Simulador: '¿cuánto me queda al mes después de la cuota?'",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "comparativa-de-coste-real-explora-fp-vs-fp-pri",
+    "nombre": "Comparativa de coste real: Explora FP vs FP privada presencial vs academia",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes",
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "comparativa-de-coste-fp-oficial-vs-no-estudiar",
+    "nombre": "Comparativa de coste: FP oficial vs no estudiar (precio/mes vs retorno)",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes",
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-el-precio-es-fijo-sin-sorpresas-desi",
+    "nombre": "One-pager: 'El precio es fijo' (sin sorpresas, desistimiento 14 días)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-60s-tu-plaza-por-89-al-mes-como-funciona",
+    "nombre": "Vídeo 60s: 'Tu plaza por 89€ al mes' (cómo funciona la financiación) · video",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "comparativa-pagar-al-contado-vs-en-30-cuotas-q",
+    "nombre": "Comparativa: pagar al contado vs en 30 cuotas (qué cabe hoy en tu bolsillo)",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "checklist-documentos-y-pasos-para-fraccionar-t",
+    "nombre": "Checklist: documentos y pasos para fraccionar tu matrícula sin entrada",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-real-pago-89-mes-y-ya-estoy-trabajando",
+    "nombre": "Caso real: 'Pago 89€/mes y ya estoy trabajando'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "costes",
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "faq-financiera-y-si-dejo-de-pagar-hay-interese",
+    "nombre": "FAQ financiera: '¿y si dejo de pagar?', '¿hay intereses?', '¿sube el precio?'",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "plantilla-whatsapp-reactivacion-tu-cuota-sigue",
+    "nombre": "Plantilla WhatsApp reactivación: 'Tu cuota sigue en 89€/mes, ¿te recalculo el plan?'",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-beca-mec-y-ayudas-oficiales-compatib",
+    "nombre": "One-pager: Beca MEC y ayudas oficiales compatibles con tu FP",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "infografia-a-que-se-va-cada-euro-de-tu-matricu",
+    "nombre": "Infografía: a qué se va cada euro de tu matrícula (precio fijo, sin sorpresas) · infografia",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "calculadora-cuota-vs-sueldo-del-puesto-al-que-",
+    "nombre": "Calculadora 'cuota vs sueldo del puesto al que aspiras' (ROI)",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes",
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-onboarding-tu-calendario-de-cuotas-y",
+    "nombre": "One-pager onboarding: tu calendario de cuotas y a quién escribir si surge algo",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "guia-de-homologacion-tu-titulo-de-fp-es-oficia",
+    "nombre": "Guía de homologación: tu título de FP es oficial del Ministerio y vale en toda España · guia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-tu-titulo-de-fp-es-oficial-y-valido-",
+    "nombre": "One-pager: 'Tu título de FP es oficial y válido en toda España' (migrantes)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-migrante-necesito-nie-sirve-sin-papeles-au",
+    "nombre": "FAQ migrante: '¿necesito NIE?', '¿sirve sin papeles aún?', '¿vale para mi profesión regulada?'",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "guia-homologar-tu-titulo-de-origen-vs-empezar-",
+    "nombre": "Guía: homologar tu título de origen vs empezar la FP oficial desde cero · guia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-real-llegue-de-venezuela-hice-la-fp-y-hoy",
+    "nombre": "Caso real: 'Llegué de Venezuela, hice la FP y hoy trabajo de TCAE en España'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-migrante-venezolana-ahora-tca",
+    "nombre": "Vídeo testimonio: migrante venezolana ahora TCAE colegiada en España · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "infografia-del-aula-al-trabajo-en-espana-con-u",
+    "nombre": "Infografía: del aula al trabajo en España con un título que el Ministerio reconoce · infografia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-titulo-oficial-oposiciones-bolsas-y-",
+    "nombre": "One-pager: 'Título oficial = oposiciones, bolsas y colegios profesionales'",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-titulo-de-muestra-y-codigo-de-centro",
+    "nombre": "One-pager: título de muestra y código de centro oficial del Ministerio",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-migrante-alumnos-latam-que-va",
+    "nombre": "Vídeo testimonio migrante: alumnos LatAm que validaron su futuro con FP oficial · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "comparativa-tu-titulo-de-origen-vs-fp-oficial-",
+    "nombre": "Comparativa: tu título de origen vs FP oficial española (qué te abre cada uno)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "calculadora-de-convalidacion-cuantos-modulos-t",
+    "nombre": "Calculadora de convalidación: '¿cuántos módulos te quedan de verdad?'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "guia-de-convalidacion-de-creditos-que-document",
+    "nombre": "Guía de convalidación de créditos: qué documentos necesitas y cómo se hace · guia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-termina-en-menos-tiempo-si-ya-tienes",
+    "nombre": "One-pager: 'Termina en menos tiempo si ya tienes estudios'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia",
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-que-pasa-con-mi-titulacion-a-medias-acceso",
+    "nombre": "FAQ: '¿qué pasa con mi titulación a medias?' (acceso GM/GS y convalidación)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "video-estudia-desde-tu-pueblo-tu-isla-o-donde-",
+    "nombre": "Vídeo: 'Estudia desde tu pueblo, tu isla o donde estés' (tour del campus móvil) · video",
+    "tipo": "documento",
+    "cat": "plataforma",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-tus-practicas-cerca-de-casa-o-en-tel",
+    "nombre": "One-pager: 'Tus prácticas, cerca de casa o en teletrabajo'",
+    "tipo": "documento",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "mapa-de-centros-de-practicas-por-provincia-e-i",
+    "nombre": "Mapa de centros de prácticas por provincia e islas · infografia",
+    "tipo": "documento",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-hay-que-ir-presencialmente-a-algun-examen-",
+    "nombre": "FAQ: '¿hay que ir presencialmente a algún examen o sede?'",
+    "tipo": "documento",
+    "cat": "plataforma",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "dossier-para-ensenar-en-casa-por-que-explora-f",
+    "nombre": "Dossier para enseñar en casa: '¿Por qué Explora FP es una buena decisión?'",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-para-padres-que-futuro-laboral-le-da",
+    "nombre": "One-pager para padres: 'Qué futuro laboral le da esta FP a tu hijo/a'",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-madre-e-hijo-cuentan-por-que-eligieron-e",
+    "nombre": "Vídeo: 'Madre e hijo cuentan por qué eligieron Explora FP' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "plantilla-whatsapp-para-el-lead-mandale-esto-a",
+    "nombre": "Plantilla WhatsApp para el lead: 'Mándale esto a quien decide contigo en casa'",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "simulador-de-horario-tu-semana-con-curso-traba",
+    "nombre": "Simulador de horario: 'Tu semana con curso + trabajo + hijos'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-estudia-a-tu-ritmo-sin-clases-en-dir",
+    "nombre": "One-pager: 'Estudia a tu ritmo, sin clases en directo obligatorias'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-trabajo-en-hosteleria-con-3-h",
+    "nombre": "Vídeo testimonio: 'Trabajo en hostelería con 3 hijos y saqué mi FP' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "checklist-como-organizar-tu-estudio-en-1-hora-",
+    "nombre": "Checklist: 'Cómo organizar tu estudio en 1 hora al día'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "calculadora-de-tiempo-cuantas-horas-a-la-seman",
+    "nombre": "Calculadora de tiempo: '¿cuántas horas a la semana necesitas de verdad?'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-oficializa-lo-que-ya-sabes-hacer-de-",
+    "nombre": "One-pager: 'Oficializa lo que ya sabes hacer' (de la experiencia al título)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "caso-de-ejercer-sin-titulo-a-facturar-con-titu",
+    "nombre": "Caso: 'De ejercer sin título a facturar con titulación oficial'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-puedo-convalidar-mi-experiencia-profesiona",
+    "nombre": "FAQ: '¿puedo convalidar mi experiencia profesional?' (acreditación de competencias)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-estudia-sin-parar-tu-negocio-compati",
+    "nombre": "One-pager: 'Estudia sin parar tu negocio' (compatible con tu actividad)",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "video-esto-no-es-la-uned-acompanamiento-real-c",
+    "nombre": "Vídeo: 'Esto NO es la UNED' (acompañamiento real, coach y tutorías) · video",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-tu-coach-personal-nunca-estudias-sol",
+    "nombre": "One-pager: 'Tu coach personal: nunca estudias solo/a'",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "demo-entra-al-campus-y-mira-como-es-una-clase-",
+    "nombre": "Demo: 'Entra al campus y mira cómo es una clase de muestra'",
+    "tipo": "documento",
+    "cat": "plataforma",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "comparativa-explora-fp-vs-fp-a-distancia-tradi",
+    "nombre": "Comparativa: Explora FP vs FP a distancia tradicional (acompañamiento y abandono)",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "guia-empieza-de-cero-el-modulo-introductorio-t",
+    "nombre": "Guía: 'Empieza de cero — el Módulo Introductorio te pone al día' · guia",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-cambie-de-sector-a-los-40-y-h",
+    "nombre": "Vídeo testimonio: 'Cambié de sector a los 40 y hoy trabajo de lo nuevo' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "checklist-no-necesitas-experiencia-previa-esto",
+    "nombre": "Checklist: 'No necesitas experiencia previa — esto es lo único que pedimos' (acceso GM/GS)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-onboarding-mis-primeras-dos-semanas-sin-h",
+    "nombre": "Caso onboarding: 'Mis primeras dos semanas sin haber estudiado en 15 años'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "comparativa-de-sueldos-cuanto-ganas-hoy-vs-cua",
+    "nombre": "Comparativa de sueldos: 'Cuánto ganas hoy vs cuánto puedes ganar con tu FP'",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-el-plus-que-te-diferencia-master-de-",
+    "nombre": "One-pager: 'El plus que te diferencia: Máster de IA + certificaciones IBM'",
+    "tipo": "documento",
+    "cat": "ia",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "caso-pase-de-soporte-a-desarrollador-y-subi-mi",
+    "nombre": "Caso: 'Pasé de soporte a desarrollador y subí mi sueldo'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Tecnología / Informática",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "infografia-9-de-cada-10-colocados-en-menos-de-",
+    "nombre": "Infografía: '9 de cada 10 colocados en menos de 3 meses' (datos de inserción) · infografia",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-por-que-dedicarte-a-esto-cambia-vidas-vo",
+    "nombre": "Vídeo: 'Por qué dedicarte a esto cambia vidas' (vocación Educación Infantil) · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Educación Infantil",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-la-comunidad-de-exploradores-estudia",
+    "nombre": "One-pager: 'La comunidad de exploradores: estudia acompañado'",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-encontre-mi-sitio-y-mi-gente-estudiando-l",
+    "nombre": "Caso: 'Encontré mi sitio y mi gente estudiando lo que me apasiona'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [],
+    "motivos": [
+      "social"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "catalogo-de-salidas-profesionales-por-ciclo-qu",
+    "nombre": "Catálogo de salidas profesionales por ciclo (qué puestos puedes ocupar) · guia",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "guia-de-bolsa-de-empleo-y-practicas-garantizad",
+    "nombre": "Guía de bolsa de empleo y prácticas garantizadas de Explora FP · guia",
+    "tipo": "documento",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "plantilla-whatsapp-reactivacion-te-guardo-la-p",
+    "nombre": "Plantilla WhatsApp reactivación: 'Te guardo la plaza y la cuota de 89€/mes'",
+    "tipo": "documento",
+    "cat": "financiacion",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "plantilla-whatsapp-reactivacion-vocacional-sig",
+    "nombre": "Plantilla WhatsApp reactivación vocacional: 'Sigue ahí lo que te ilusionaba'",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "calendario-de-convocatorias-las-plazas-para-es",
+    "nombre": "Calendario de convocatorias: 'Las plazas para esta edición se cierran el [fecha]' · infografia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-quienes-somos-y-por-que-puedes-fiart",
+    "nombre": "One-pager: 'Quiénes somos y por qué puedes fiarte' (centro autorizado, años, alumnos)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "recopilatorio-de-resenas-y-valoraciones-reales",
+    "nombre": "Recopilatorio de reseñas y valoraciones reales de alumnos · infografia",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "demo-guiada-como-es-estudiar-una-semana-en-el-",
+    "nombre": "Demo guiada: 'Cómo es estudiar una semana en el campus' (recorrido funcional)",
+    "tipo": "documento",
+    "cat": "plataforma",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-general-anti-objeciones-las-15-dudas-que-f",
+    "nombre": "FAQ general anti-objeciones: las 15 dudas que frenan la matrícula",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes",
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-por-que-fp-y-no-un-grado-universitar",
+    "nombre": "One-pager: '¿Por qué FP y no un grado universitario?' (más corta, oficial, con empleo)",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "comparativa-de-ramas-que-ciclo-encaja-contigo-",
+    "nombre": "Comparativa de ramas: '¿qué ciclo encaja contigo?' (sanidad, tech, infantil, etc.)",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-sanidad-hoy-trabajo-de-tcae-e",
+    "nombre": "Vídeo testimonio Sanidad: 'Hoy trabajo de TCAE en un hospital' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "caso-tecnologia-sin-saber-programar-a-desarrol",
+    "nombre": "Caso Tecnología: 'Sin saber programar a desarrollador junior en un año'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Tecnología / Informática",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-rama-sanidad-salidas-sueldos-y-deman",
+    "nombre": "One-pager rama Sanidad: salidas, sueldos y demanda (TCAE, Farmacia, etc.)",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-rama-tecnologia-ia-por-que-es-la-apu",
+    "nombre": "One-pager rama Tecnología/IA: por qué es la apuesta de futuro (máster IA + IBM)",
+    "tipo": "documento",
+    "cat": "ia",
+    "rama": "Tecnología / Informática",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-rama-educacion-infantil-vocacion-con",
+    "nombre": "One-pager rama Educación Infantil: vocación con futuro estable",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Educación Infantil",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "plantilla-de-primer-contacto-gracias-por-tu-in",
+    "nombre": "Plantilla de primer contacto: 'Gracias por tu interés, esto es lo que incluye tu FP'",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-todo-lo-que-incluye-tu-programa-camp",
+    "nombre": "One-pager: 'Todo lo que incluye tu programa' (campus, tutor, prácticas, máster IA, IBM)",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "guia-de-bienvenida-tus-primeros-7-dias-en-expl",
+    "nombre": "Guía de bienvenida: 'Tus primeros 7 días en Explora FP' · guia",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad",
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-referidos-trae-a-alguien-como-tu-y-g",
+    "nombre": "One-pager referidos: 'Trae a alguien como tú y ganáis los dos'",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-el-titulo-caduca-o-hay-que-renovarlo-valid",
+    "nombre": "FAQ: '¿el título caduca o hay que renovarlo?' (validez permanente)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "one-pager-compatible-con-el-paro-una-baja-o-un",
+    "nombre": "One-pager: 'Compatible con el paro, una baja o una excedencia'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-aislado-geografico-estudio-de",
+    "nombre": "Vídeo testimonio aislado geográfico: 'Estudio desde Canarias sin moverme de mi isla' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-autonomo-legalice-mi-consulta-de-nutricio",
+    "nombre": "Caso autónomo: 'Legalicé mi consulta de nutrición con el título oficial'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Sanidad",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "demo-ia-asi-usaras-el-master-de-ia-en-tu-dia-a",
+    "nombre": "Demo IA: 'Así usarás el Máster de IA en tu día a día profesional'",
+    "tipo": "documento",
+    "cat": "ia",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "comparativa-estudiar-ahora-vs-esperar-al-ano-q",
+    "nombre": "Comparativa: 'Estudiar ahora vs esperar al año que viene' (coste de oportunidad)",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-que-pasa-si-suspendo-o-no-llego-a-tiempo-r",
+    "nombre": "FAQ: '¿qué pasa si suspendo o no llego a tiempo?' (recuperaciones y flexibilidad)",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "one-pager-tu-tutor-y-tu-coach-quien-es-quien-e",
+    "nombre": "One-pager: 'Tu tutor y tu coach: quién es quién en tu acompañamiento'",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-decisor-familiar-mi-madre-dudaba-y-hoy-pr",
+    "nombre": "Caso decisor familiar: 'Mi madre dudaba y hoy presume de mi título'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "infografia-el-camino-completo-matricula-estudi",
+    "nombre": "Infografía: 'El camino completo: matrícula → estudio → prácticas → título → empleo' · infografia",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "plantilla-seguimiento-multi-objecion-recapitul",
+    "nombre": "Plantilla seguimiento multi-objeción: 'Recapitulo lo que hablamos y te resuelvo dudas'",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "video-un-dia-con-tu-coach-acompanamiento-en-ac",
+    "nombre": "Vídeo: 'Un día con tu coach' (acompañamiento en acción) · video",
+    "tipo": "documento",
+    "cat": "comunidad",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "faq-puedo-cambiar-de-ciclo-si-me-equivoco-al-e",
+    "nombre": "FAQ: '¿puedo cambiar de ciclo si me equivoco al elegir?'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "one-pager-practicas-garantizadas-en-empresa-co",
+    "nombre": "One-pager: 'Prácticas garantizadas en empresa' (cómo y dónde)",
+    "tipo": "documento",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "comparativa-lo-que-prometen-otros-vs-lo-que-cu",
+    "nombre": "Comparativa: 'Lo que prometen otros vs lo que cumplimos' (garantías por escrito)",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "caso-vivo-en-un-pueblo-de-300-habitantes-y-me-",
+    "nombre": "Caso: 'Vivo en un pueblo de 300 habitantes y me titulé de TCAE'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "Sanidad",
+    "pilares": [
+      "autonomia",
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "one-pager-acceso-gm-vs-gs-que-necesitas-segun-",
+    "nombre": "One-pager: 'Acceso GM vs GS: qué necesitas según tu situación'",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "faq-soy-migrante-y-mis-estudios-son-de-otro-pa",
+    "nombre": "FAQ: 'Soy migrante y mis estudios son de otro país, ¿puedo acceder a la FP?'",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "video-testimonio-concilio-turnos-rotativos-y-e",
+    "nombre": "Vídeo testimonio: 'Concilio turnos rotativos y estudio cuando puedo' · video",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "one-pager-el-master-de-ia-y-la-certificacion-i",
+    "nombre": "One-pager: 'El máster de IA y la certificación IBM, explicados para no técnicos'",
+    "tipo": "documento",
+    "cat": "ia",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "calculadora-fecha-en-la-que-te-titulas-segun-c",
+    "nombre": "Calculadora 'fecha en la que te titulas' (según ciclo y convalidaciones)",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia",
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "ego"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "dossier-comercial-maestro-argumentario-por-per",
+    "nombre": "Dossier comercial maestro: argumentario por persona y objeción (uso interno comercial)",
+    "tipo": "documento",
+    "cat": "perfil",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes",
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "one-pager-garantia-de-empleo-devolucion-compro",
+    "nombre": "One-pager: 'Garantía de empleo / devolución' (compromiso por escrito)",
+    "tipo": "documento",
+    "cat": "empleo",
+    "rama": "",
+    "pilares": [
+      "insercion",
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "infografia-por-que-la-fp-a-distancia-oficial-e",
+    "nombre": "Infografía: 'Por qué la FP a distancia oficial es tendencia (datos del sector)' · infografia",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "plantilla-de-cierre-te-reservo-plaza-hoy-activ",
+    "nombre": "Plantilla de cierre: 'Te reservo plaza hoy, ¿activamos tu matrícula?'",
+    "tipo": "documento",
+    "cat": "confianza",
+    "rama": "",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "caso-ambicioso-migrante-de-repartidor-recien-l",
+    "nombre": "Caso ambicioso migrante: 'De repartidor recién llegado a técnico cualificado'",
+    "tipo": "documento",
+    "cat": "testimonio",
+    "rama": "",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "ego",
+      "social",
+      "seguridad"
+    ],
+    "prioridad": "Media",
+    "link": ""
+  },
+  {
+    "id": "faq-el-campus-funciona-bien-en-el-movil-y-con-",
+    "nombre": "FAQ: '¿el campus funciona bien en el móvil y con mala conexión?'",
+    "tipo": "documento",
+    "cat": "plataforma",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "one-pager-sin-examenes-presenciales-sorpresa-a",
+    "nombre": "One-pager: 'Sin exámenes presenciales sorpresa: así evalúas tu progreso'",
+    "tipo": "documento",
+    "cat": "metodologia",
+    "rama": "",
+    "pilares": [
+      "autonomia"
+    ],
+    "motivos": [
+      "seguridad"
+    ],
+    "prioridad": "Baja",
+    "link": ""
+  },
+  {
+    "id": "sal-gestion-administrativa-gm",
+    "nombre": "Salidas profesionales — Gestión Administrativa",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Administración / Gestión",
+    "formacion": "Gestión Administrativa GM",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-administracion-y-finanzas-gs",
+    "nombre": "Salidas profesionales — Administración y Finanzas",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Administración / Gestión",
+    "formacion": "Administración y Finanzas GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-asistencia-a-la-direccion-gs",
+    "nombre": "Salidas profesionales — Asistencia a la Dirección",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Administración / Gestión",
+    "formacion": "Asistencia a la Dirección GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-doble-administracion-y-finanzas-asistencia-a-l",
+    "nombre": "Salidas profesionales — Doble Administración y Finanzas + Asistencia a la Dirección",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Administración / Gestión",
+    "formacion": "DOBLE Administración y Finanzas + Asistencia a la Dirección",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-marketing-y-publicidad-gs",
+    "nombre": "Salidas profesionales — Marketing y Publicidad",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Comercio / Marketing",
+    "formacion": "Marketing y Publicidad GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-comercio-internacional-gs",
+    "nombre": "Salidas profesionales — Comercio Internacional",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Comercio / Marketing",
+    "formacion": "Comercio Internacional GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-transporte-y-logistica-gs",
+    "nombre": "Salidas profesionales — Transporte y Logística",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Comercio / Marketing",
+    "formacion": "Transporte y Logística GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-doble-comercio-transporte",
+    "nombre": "Salidas profesionales — Doble Comercio + Transporte",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Comercio / Marketing",
+    "formacion": "DOBLE Comercio + Transporte",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-smr-gm",
+    "nombre": "Salidas profesionales — SMR",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Tecnología / Informática",
+    "formacion": "SMR GM",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-dam-gs",
+    "nombre": "Salidas profesionales — DAM",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Tecnología / Informática",
+    "formacion": "DAM GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-daw-gs",
+    "nombre": "Salidas profesionales — DAW",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Tecnología / Informática",
+    "formacion": "DAW GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-asir-gs",
+    "nombre": "Salidas profesionales — ASIR",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Tecnología / Informática",
+    "formacion": "ASIR GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-doble-dam-daw",
+    "nombre": "Salidas profesionales — Doble DAM + DAW",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Tecnología / Informática",
+    "formacion": "DOBLE DAM + DAW",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-tcae-gm",
+    "nombre": "Salidas profesionales — TCAE",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "formacion": "TCAE GM",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-laboratorio-gs",
+    "nombre": "Salidas profesionales — Laboratorio",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "formacion": "Laboratorio GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-anatomia-gs",
+    "nombre": "Salidas profesionales — Anatomía",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "formacion": "Anatomía GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-nutricion-y-dietetica-gs",
+    "nombre": "Salidas profesionales — Nutrición y Dietética",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "formacion": "Nutrición y Dietética GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-doble-laboratorio-anatomia",
+    "nombre": "Salidas profesionales — Doble Laboratorio + Anatomía",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Sanidad",
+    "formacion": "DOBLE Laboratorio + Anatomía",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "sal-educacion-infantil-gs",
+    "nombre": "Salidas profesionales — Educación Infantil",
+    "tipo": "documento",
+    "cat": "salidas",
+    "rama": "Educación Infantil",
+    "formacion": "Educación Infantil GS",
+    "pilares": [
+      "insercion"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": ""
+  },
+  {
+    "id": "ppto-transporte-y-logistica-gs",
+    "nombre": "Presupuesto oficial — Transporte y Logística",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Comercio / Marketing",
+    "formacion": "Transporte y Logística GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/19zAR-c0fNziIjO49N6n5kFcFUpfzJpip/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-doble-administracion-y-finanzas-asistencia-a-l",
+    "nombre": "Presupuesto oficial — Doble Administración y Finanzas + Asistencia a la Dirección",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Administración / Gestión",
+    "formacion": "DOBLE Administración y Finanzas + Asistencia a la Dirección",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1DXbxxGjZkk1E5B95fVn0fB3ASaFczJkm/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-administracion-y-finanzas-gs",
+    "nombre": "Presupuesto oficial — Administración y Finanzas",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Administración / Gestión",
+    "formacion": "Administración y Finanzas GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1DL91Dbr57QUb4-HV3mt3XjJlqBk508bz/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-asistencia-a-la-direccion-gs",
+    "nombre": "Presupuesto oficial — Asistencia a la Dirección",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Administración / Gestión",
+    "formacion": "Asistencia a la Dirección GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1XW0lO9SexG56GQqKn4wrz-p74EcVuqtx/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-gestion-administrativa-gm",
+    "nombre": "Presupuesto oficial — Gestión Administrativa",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Administración / Gestión",
+    "formacion": "Gestión Administrativa GM",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1gHHo8Rky9xsIzpX0WP4QJiBdZ0Kc743j/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-tcae-gm",
+    "nombre": "Presupuesto oficial — TCAE",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Sanidad",
+    "formacion": "TCAE GM",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/157ye1ZVfIWaWS2fCCbPqBeB-Xe09uTiq/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-comercio-internacional-gs",
+    "nombre": "Presupuesto oficial — Comercio Internacional",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Comercio / Marketing",
+    "formacion": "Comercio Internacional GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1gw1L6hW3u8x_FT1ZHaqFilPJlcHtJFOP/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-smr-gm",
+    "nombre": "Presupuesto oficial — SMR",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Tecnología / Informática",
+    "formacion": "SMR GM",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1MuHcuQzJ1my0kLyOZ5uR6knEIr-OP0Ah/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-marketing-y-publicidad-gs",
+    "nombre": "Presupuesto oficial — Marketing y Publicidad",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Comercio / Marketing",
+    "formacion": "Marketing y Publicidad GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1tkagnHTbLO3infQ3jSiJVeB_2E-n2ksT/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-dam-gs",
+    "nombre": "Presupuesto oficial — DAM",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Tecnología / Informática",
+    "formacion": "DAM GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/18kmq_qpAjOiJQcZx9twy1k1sZsGFr-1G/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-asir-gs",
+    "nombre": "Presupuesto oficial — ASIR",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Tecnología / Informática",
+    "formacion": "ASIR GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1mhPLB53pzryFK3G8hGmvVjmt_pv7tY2a/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-daw-gs",
+    "nombre": "Presupuesto oficial — DAW",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Tecnología / Informática",
+    "formacion": "DAW GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/112S6gU2XXjbJuRUyz0UVLBH2Q9Waohd_/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-doble-comercio-transporte",
+    "nombre": "Presupuesto oficial — Doble Comercio + Transporte",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Comercio / Marketing",
+    "formacion": "DOBLE Comercio + Transporte",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1BHM-VYiPzvsuucDVWmWeVsIVuAKSChSf/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-doble-dam-daw",
+    "nombre": "Presupuesto oficial — Doble DAM + DAW",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Tecnología / Informática",
+    "formacion": "DOBLE DAM + DAW",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1N0T_Cnn_q_iRvByP0FZBQOIH3iI_sb4B/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-laboratorio-gs",
+    "nombre": "Presupuesto oficial — Laboratorio",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Sanidad",
+    "formacion": "Laboratorio GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/13WREi9MuBvrQjwWqnhNC4kN4aiSoueZK/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-educacion-infantil-gs",
+    "nombre": "Presupuesto oficial — Educación Infantil",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Educación Infantil",
+    "formacion": "Educación Infantil GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1FmZiEa9XN-lHq_MB4jgj8U5IZwWSXyTj/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-doble-laboratorio-anatomia",
+    "nombre": "Presupuesto oficial — Doble Laboratorio + Anatomía",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Sanidad",
+    "formacion": "DOBLE Laboratorio + Anatomía",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1SBje7X_WTmq4E0iVJvt-NZffu5JeFR6x/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-nutricion-y-dietetica-gs",
+    "nombre": "Presupuesto oficial — Nutrición y Dietética",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Sanidad",
+    "formacion": "Nutrición y Dietética GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1K_w4DAD1SagEeWR9eH-AfQnD8N-CMvAo/view?usp=drive_link"
+  },
+  {
+    "id": "ppto-anatomia-gs",
+    "nombre": "Presupuesto oficial — Anatomía",
+    "tipo": "presupuesto",
+    "cat": "presupuesto",
+    "rama": "Sanidad",
+    "formacion": "Anatomía GS",
+    "pilares": [
+      "costes"
+    ],
+    "motivos": [
+      "seguridad",
+      "social",
+      "ego"
+    ],
+    "prioridad": "Alta",
+    "link": "https://drive.google.com/file/d/1UgjLVAwU5541RKhby8jgMSqESdXoZJe8/view?usp=drive_link"
+  }
+];
+const DOCS_VERSION = '5';
+function loadDocs(){ try{ if(localStorage.getItem('explorafp_docs_v')===DOCS_VERSION){ const r=localStorage.getItem('explorafp_docs'); if(r) return JSON.parse(r); } }catch(e){} return JSON.parse(JSON.stringify(DEFAULT_DOCS)); }
+function saveDocs(){ try{ localStorage.setItem('explorafp_docs', JSON.stringify(DOCS)); localStorage.setItem('explorafp_docs_v', DOCS_VERSION); }catch(e){} }
+let DOCS = loadDocs(); saveDocs();
+function fuenteOf(link){ if(!link) return ''; if(/canva\.com/.test(link)) return 'Canva'; if(/drive\.google|docs\.google/.test(link)) return 'Drive'; if(/notion/.test(link)) return 'Notion'; if(/explorafp\.com|ucademy\.com/.test(link)) return 'Landing'; return 'Web'; }
+
+const EXAMPLES = {
+  seguridad:{ nombre:'María', formacion:'TCAE GM', m:'Quiero un trabajo estable de una vez y salir del supermercado donde llevo 15 años. Que el título me sirva de verdad.', c:'38 años, dos hijos. Lleva 20 años sin estudiar y le da miedo no ser capaz. Le preocupa el dinero. Lo habla en casa con su marido.' },
+  ego:{ nombre:'Javier', formacion:'DAW GS', m:'Quiero dar el salto a desarrollo y ganar más. Estoy estancado y gente con menos que yo me ha adelantado.', c:'26 años, trabaja en soporte informático. Ambicioso, le atrae la IA. Decide solo. Su pega es el tiempo, no el dinero.' },
+  social:{ nombre:'Carmen', formacion:'Educación Infantil GS', m:'Siempre he querido dedicarme a esto por vocación, ayudar, y que mi familia me vea como alguien del sector.', c:'44 años. Le da miedo el online y estar sola; valora la comunidad y el acompañamiento. Lo habla en casa.' }
+};
+
+/* ===== Motor ===== */
+const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function hits(text, terms){ let n=0; (terms||[]).forEach(t=>{ const tt=norm(t); if(!tt)return; let i=text.indexOf(tt); while(i!==-1){n++;i=text.indexOf(tt,i+tt.length);} }); return n; }
+function analyze(motivacion, contexto){
+  const text = norm(motivacion+' '+contexto);
+  let motivo='seguridad', mn=-1;
+  for(const k in MOTIVOS){ const n=hits(text, MOTIVOS[k].keys); if(n>mn){mn=n;motivo=k;} }
+  const pil=[]; for(const p in PILAR_KEYS){ const n=hits(text, PILAR_KEYS[p]); if(n>0) pil.push({p,n}); }
+  pil.sort((a,b)=>b.n-a.n);
+  let pilares = pil.map(x=>x.p); if(!pilares.length) pilares=['insercion'];
+  const tercero = /pareja|marido|mujer|esposo|esposa|padres|en casa|familia|hijos|novi/.test(text);
+  return { motivo, pilares, tercero, rawText:text };
+}
+
+/* ===== Género ===== */
+const F_NAMES=['maria','carmen','ana','laura','marta','lucia','sara','paula','elena','sofia','julia','nuria','pilar','isabel','raquel','cristina','beatriz','rocio','silvia','patricia','andrea','noelia','alba','irene','rosa','mar','nieves','dolores','mercedes','amparo','montserrat','nadia','fatima','aicha','aisha','yolanda','susana','vanesa','sonia','natalia'];
+const M_NAMES=['jose','juan','javier','antonio','manuel','francisco','david','daniel','carlos','jorge','miguel','angel','alejandro','pablo','sergio','ruben','adrian','alvaro','ivan','oscar','raul','nicolas','andres','ismael','rafael','fernando','luis','victor','marcos','hugo','mohamed','ahmed','jesus','enrique','gonzalo','diego'];
+function guessGender(name){ if(!name) return 'neu'; const n=norm(name).split(/\s+/)[0]; if(F_NAMES.includes(n)) return 'fem'; if(M_NAMES.includes(n)) return 'masc'; if(/a$/.test(n)) return 'fem'; if(/(o|os)$/.test(n)) return 'masc'; return 'neu'; }
+function genderize(text, gen){ if(gen==='neu'||!gen) return text;
+  // plural os/as primero (más largo), luego singular o/a — así "juntos/as" → "juntas/juntos"
+  return text
+    .replace(/([a-záéíóúñ]+?)os\/as\b/gi, (mt,stem)=> gen==='fem' ? stem+'as' : stem+'os')
+    .replace(/([a-záéíóúñ]+?)o\/a\b/gi, (mt,stem)=> gen==='fem' ? stem+'a' : stem+'o'); }
+
+/* ===== Mensajes de WhatsApp ===== */
+function formatCuando(){
+  const d=$('f-fecha').value, h=$('f-hora').value;
+  if(!d) return h ? ('hoy a las '+h) : 'mañana';
+  const dt=new Date(d+'T00:00:00');
+  const wd=dt.toLocaleDateString('es-ES',{weekday:'long'});
+  return `el ${wd} ${dt.getDate()}${h?(' a las '+h):''}`;
+}
+function formatGrupo(d){
+  if(!d) return '';
+  const dt=new Date(d+'T00:00:00');
+  const mes=dt.toLocaleDateString('es-ES',{month:'long'});
+  return `${dt.getDate()} de ${mes}`;
+}
+const PROX = {
+  seguridad:(c,g)=>`Te llamo ${c} y resolvemos lo que te quede, con calma 🙂${g?` Te aviso de que el grupo arranca el ${g}, así lo dejamos atado a tiempo.`:''}`,
+  ego:(c,g)=>`Hablamos ${c} y te dejo lista tu plaza en el grupo 🚀${g?` El grupo arranca el ${g}: entrando ahora eres del grupo 1 y eliges prácticas primero.`:''}`,
+  social:(c,g)=>`Te llamo ${c} y lo vemos juntos/as, sin prisa 💚${g?` El grupo empieza el ${g}, así entras desde el principio con el resto.`:''}`
+};
+const SEG_CHECK = {
+  seguridad:`Cuando puedas, dime qué te pareció. Sin prisa, lo vemos a tu ritmo 🙂`,
+  ego:`Dime qué te pareció; quiero asegurarte la plaza del grupo antes de que se llene 🚀`,
+  social:`Cuéntame qué te pareció y lo vemos juntos/as 💚`
+};
+const MATRI = {
+  seguridad:l=>`Y cuando lo veas claro, aquí reservas tu plaza, sin compromiso 👉 ${l}`,
+  ego:l=>`Para dejar tu plaza fijada en el grupo, reserva aquí 👉 ${l}`,
+  social:l=>`Y cuando queráis dar el paso, aquí reserváis la plaza 👉 ${l}`
+};
+const PRESU = {
+  seguridad:(l,casa)=>`Y aquí tienes tu presupuesto con el pago al contado o por cuotas, para que ${casa?'lo veáis en casa con calma':'lo veas con calma'} 👉 ${l}`,
+  ego:(l,casa)=>`💶 Aquí tu presupuesto: al contado entras con descuento, quien decide rápido gana también ahí 👉 ${l}`,
+  social:(l,casa)=>`Os dejo el presupuesto con las dos formas de pago, para que ${casa?'lo habléis en casa':'lo veas'} con calma 👉 ${l}`
+};
+const TESTI = {
+  seguridad:l=>`Y para que lo veas con tranquilidad, mira lo que cuentan quienes ya pasaron por aquí 👉 ${l}`,
+  ego:l=>`Mira lo que han conseguido los que vinieron a darlo todo, por si te sirve de referencia 👉 ${l}`,
+  social:l=>`Te dejo voces de gente de la comunidad que ya está dentro, para que los conozcas 👉 ${l}`
+};
+/* Encuadre de cada recurso del repertorio cuando se envía por WhatsApp (por categoría) */
+const WA_FRAME = {
+  plataforma:l=>`Te enseño cómo es la plataforma por dentro, para que veas lo fácil que es manejarse 👉 ${l}`,
+  metodologia:l=>`Y cómo se estudia y se aprueba sin agobios (el método 70-20-10) 👉 ${l}`,
+  ia:l=>`Esto te va a gustar: el contenido de IA y las certificaciones que llevas incluidas 👉 ${l}`,
+  salidas:l=>`Las salidas profesionales reales de tu formación, para que veas dónde acabas 👉 ${l}`,
+  empleo:l=>`Cómo te acompañamos hasta colocarte (prácticas y empleo) 👉 ${l}`,
+  comunidad:l=>`Cómo es el acompañamiento y la comunidad desde el primer día 👉 ${l}`,
+  financiacion:l=>`Las becas y formas de pago, para que el dinero no sea lo que te frene 👉 ${l}`,
+  presupuesto:l=>`Y te dejo tu presupuesto personalizado, con el pago al contado y las cuotas, para que lo veas con calma 👉 ${l}`,
+  confianza:l=>`Para que vayas con total tranquilidad (somos centro oficial del Ministerio) 👉 ${l}`,
+  testimonio:l=>`Y lo que cuentan alumnos que ya pasaron por aquí 👉 ${l}`
+};
+const CAT_ORDER = ['plataforma','metodologia','salidas','empleo','ia','comunidad','financiacion','presupuesto','confianza','testimonio'];
+function waFrame(r){ const f=WA_FRAME[r.cat]; return f ? f(r.link) : `Te paso también ${r.nombre} 👉 ${r.link}`; }
+function reconocimiento(t,m,fm){
+  const has = re => re.test(t);
+  if (m==='social'){
+    if (has(/vocacion|ayudar|siempre he querido|con ninos|ninos|ensenar|cuidar/)) return 'Me quedo con las ganas reales que tienes de dedicarte a esto. Esa vocación es lo que de verdad marca la diferencia 💚';
+    if (has(/comunidad|sola|solo|acompan|la gente|pertenec|familia|los tuyos/)) return 'Me quedo con una cosa: quieres vivir esto acompañado/a y sentirte parte de algo. Aquí no vas a estar solo/a 💚';
+    return `Se te nota la ilusión por hacer ${fm} y dedicarte de verdad a esto 💚`;
+  }
+  if (m==='ego'){
+    if (has(/estancad|adelant|merezco|demostrar|el doble|ascend|ganar mas|crecer/)) return 'Me quedo con algo que me dijiste: estás listo/a para dejar de estar estancado/a y demostrar lo que vales 🔥';
+    return `Se te ve con ganas de hacer ${fm} y de llegar lejos — vas a tener dónde demostrarlo 🚀`;
+  }
+  // seguridad
+  if (has(/supermercad|quemad|harto|harta|salir de/)) return 'Me quedo con algo que me dijiste: quieres salir de donde estás y tener por fin algo estable. Vamos a por ello 💪';
+  if (has(/hij|famili|los tuyos|pareja|marido|mujer/)) return 'Me quedo con una cosa: que lo haces también por los tuyos, para darles un futuro más tranquilo. Esa motivación llega lejos 💚';
+  if (has(/sin estudiar|anos sin|hace tiempo|mayor|ser capaz|sere capaz/)) return 'Y me quedo con que, aunque lleves tiempo sin estudiar, tienes clarísimo que quieres dar el paso. Eso es lo más importante 🙂';
+  return `Se te notan las ganas de hacer ${fm} y de dar un paso firme hacia algo estable.`;
+}
+function selectedSubs(s){
+  return (s.sub||[]).map(k=>{ const [p,i]=k.split('|'); const a=SUBAREAS[s.motivo]&&SUBAREAS[s.motivo][p]; return a&&a[+i]?a[+i]:null; }).filter(Boolean);
+}
+const VAL_INTRO = {
+  seguridad:'Quédate con lo importante de lo que vimos:',
+  ego:'Para que lo tengas claro, esto es lo que te pone por delante:',
+  social:'Y lo bonito de todo esto:'
+};
+const VAL_CIERRE = {
+  seguridad:' Justo lo que buscabas para dar el paso con tranquilidad.',
+  ego:' Vamos, terreno de sobra para llegar donde quieres 🚀',
+  social:' En definitiva, no haces este camino en solitario 💚'
+};
+// Une los fragmentos como un HILO CONDUCTOR (conectores que acumulan), no como lista.
+function joinFrags(a){
+  if(!a.length) return '';
+  if(a.length===1) return a[0];
+  if(a.length===2) return a[0]+', y además '+a[1];
+  const mid=[', y además ', ', a la vez que ', ', y encima '];
+  let out=a[0];
+  for(let k=1;k<a.length;k++){ out += (k===a.length-1 ? ', y por si fuera poco ' : mid[(k-1)%mid.length]) + a[k]; }
+  return out;
+}
+// Mensaje COMÚN: teje en una sola frase natural los frags de TODAS las sub-áreas marcadas
+// (de varios pilares a la vez). Nada de lista por puntos.
+function composeValor(s){
+  const fr = selectedSubs(s).map(x=>x.frag).filter(Boolean);
+  if(!fr.length) return '';
+  return (VAL_INTRO[s.motivo]||'') + ' ' + joinFrags(fr) + '.' + (VAL_CIERRE[s.motivo]||'');
+}
+function buildSeguimiento(s,x){
+  const {n,fm,fn,m,cuando,grupo,matricula,presu,casa}=x;
+  const ahora=[], cuandoResponda=[];
+  const matriAhora = (m==='ego');
+  ahora.push(`¡Hola${n}! ¿Qué tal? 😊 Te escribo otra vez por lo que hablamos de ${fm}.`);
+  const valor=composeValor(s); if(valor) ahora.push(valor);
+  ahora.push(SEG_CHECK[m]);
+  if (s.incProx!==false) ahora.push(`Te llamo ${cuando} y lo dejamos cerrado 📞${grupo?` (el grupo arranca el ${grupo})`:''}`);
+  if (matriAhora && matricula) ahora.push(MATRI[m](matricula.link));
+  if (s.incPresu && presu) cuandoResponda.push(PRESU[m](presu.link, casa));
+  if (!matriAhora && matricula) cuandoResponda.push(MATRI[m](matricula.link));
+  return { ahora, cuandoResponda };
+}
+function buildCierre(s,x){
+  const {n,fm,fn,m,cuando,grupo,matricula}=x;
+  const ahora=[];
+  ahora.push(`¡Genial${n}! Me alegra un montón que des el paso 🙌`);
+  if (matricula) ahora.push(`Aquí reservas tu plaza y la dejamos a tu nombre 👉 ${matricula.link}`);
+  ahora.push(`En cuanto la tengas, ${s.incProx!==false?`te llamo ${cuando} y `:''}te guío con la matrícula paso a paso, sin liarte.${grupo?` Llegas con margen al arranque del grupo el ${grupo} 🎯`:''}`);
+  return { ahora, cuandoResponda:[] };
+}
+function buildReactivacion(s,x){
+  const {n,fm,fn,m,grupo,subs,testi}=x;
+  const sub0 = subs[0] ? subs[0].wa : null;
+  const REACT = {
+    seguridad:{
+      p1:`¡Hola${n}! Sin prisa, ¿eh? Te leo cuando puedas. Si te quedó alguna duda de ${fm}, aquí estoy para resolverla con calma 🙂`,
+      p2:( testi ? `Por si te ayuda a verlo con tranquilidad, mira lo que cuentan quienes ya pasaron por aquí 👉 ${testi.link}` : (sub0 ? `Te dejo una cosa que quizá te dé tranquilidad: ${sub0}` : `Sea cual sea tu ritmo, el sitio para empezar de cero y bien acompañado/a sigue aquí 🙂`) ),
+      p3:`Lo dejo aquí para no agobiarte. Cuando te encaje, me escribes y retomamos justo donde lo dejamos 🙂`
+    },
+    ego:{
+      p1:`¡Hola${n}! Te leo cuando puedas. ¿Seguimos con lo de ${fm}? 🚀`,
+      p2:( testi ? `Mira lo que han conseguido los que vinieron a darlo todo 👉 ${testi.link}` : (sub0 ? `Una cosa que no quiero que se te escape: ${sub0}` : `El grupo 1 elige prácticas primero; me gustaría que estuvieras ahí.`) ) + (grupo?` Y ojo, que el grupo arranca el ${grupo}.`:''),
+      p3:`Lo dejo en tu tejado. Si quieres asegurar tu plaza en este grupo, escríbeme y lo movemos hoy mismo 🔥`
+    },
+    social:{
+      p1:`¡Hola${n}! Te leo cuando puedas, sin prisa 💚 Si te quedó alguna duda de ${fm}, aquí me tienes.`,
+      p2:( testi ? `Te dejo voces de gente de la comunidad que ya está dentro, por si te apetece conocerlos 👉 ${testi.link}` : (sub0 ? `Te recuerdo algo bonito de esto: ${sub0}` : `La comunidad de exploradores te espera cuando quieras dar el paso 💚`) ) + (grupo?` El grupo empieza el ${grupo}, por si quieres entrar desde el principio.`:''),
+      p3:`Lo dejo aquí, sin presión. Cuando te encaje, me escribes y seguimos juntos/as 💚`
+    }
+  };
+  const r = REACT[m];
+  return { pasos:[ {etq:'Paso 1 · Bump suave', t:r.p1}, {etq:'Paso 2 · Aporte de valor', t:r.p2}, {etq:'Paso 3 · Despedida abierta', t:r.p3} ] };
+}
+function buildWhatsApp(s){
+  const n = s.nombre ? (' '+s.nombre) : '';
+  const fm = formMention(s.formacion), fn = formName(s.formacion);
+  const m = s.motivo;
+  const cuando = formatCuando();
+  const grupo = formatGrupo(($('f-inicio')&&$('f-inicio').value)||'');
+  const subs = selectedSubs(s);
+  const casa = (s.tercero || m==='social');
+  const dossier = dossierFor(s.formacion);
+  const matricula = DOCS.find(d=>d.tipo==='matricula' && d.link);
+  const presu = DOCS.find(d=>d.tipo==='presupuesto' && d.link && d.formacion===s.formacion) || DOCS.find(d=>d.tipo==='presupuesto' && d.link && !d.formacion);
+  const testi = DOCS.find(d=>d.tipo==='documento' && /testimon/i.test(d.id+' '+d.nombre) && d.link);
+  const greeting = s.nombre ? ('¡'+s.nombre+', un placer hablar contigo!') : '¡Un placer hablar contigo!';
+  const comercial = (s.comercial||'').trim();
+  const marca = comercial ? `Soy ${comercial}, de Explora FP × Ucademy` : 'Te escribo desde Explora FP × Ucademy';
+
+  if (s.momento==='reactivacion') return buildReactivacion(s,{n,fm,fn,m,grupo,subs,testi});
+  if (s.momento==='seguimiento')  return buildSeguimiento(s,{n,fm,fn,m,cuando,grupo,subs,matricula,presu,casa});
+  if (s.momento==='cierre')       return buildCierre(s,{n,fm,fn,m,cuando,grupo,matricula});
+
+  // ===== PRIMERA LLAMADA =====
+  // El comercial ELIGE en el panel "Recursos a enviar" qué adjuntar según la llamada.
+  // Cada recurso elegido entra con su frase de presentación. Por defecto solo van
+  // marcados el dosier (en el primer toque) y la reserva (como nudge).
+  const ahora=[], cuandoResponda=[];
+  const sel = recommendResources(s).filter(r=> (s.recursosSel||[]).includes(r.id) && r.link && !r.pendiente);
+  sel.sort((a,b)=>{ const o=c=>{ const i=CAT_ORDER.indexOf(c); return i<0?99:i; }; return o(a.cat)-o(b.cat) || b._s-a._s; });
+  ahora.push(`${greeting} ${marca} 😊 ${(s.iaReconoce||reconocimiento(s.rawText, m, fm))}`);
+  const valor = composeValor(s); if (valor) ahora.push(valor);   // mensaje común: el valor de TODAS las sub-áreas en una sola frase natural
+  // Dosier — opcional (toggle "Incluir en el mensaje")
+  if (s.incDossier!==false && dossier && dossier.link && !dossier.pendiente)
+    ahora.push(`Como hablamos en la llamada, te dejo por aquí tu dosier de ${fn}, con todo lo que vimos 👉 ${dossier.link}`);
+  // Recursos elegidos del repertorio
+  sel.forEach(r=>{
+    if (r.tipo==='matricula') cuandoResponda.push(MATRI[m](r.link)); // la reserva va como nudge de "cuando responda"
+    else ahora.push(waFrame(r));
+  });
+  // Presupuesto — opcional (toggle "Incluir en el mensaje")
+  if (s.incPresu && presu && presu.link) ahora.push(WA_FRAME.presupuesto(presu.link));
+  if (s.incPrecio){ const _pl=precioLinea(s); if(_pl) ahora.push(_pl); }
+  // Próximo paso / cuándo volvemos a hablar — opcional (toggle "Incluir en el mensaje")
+  if (s.incProx!==false) ahora.push(PROX[m](cuando, grupo));
+  return { ahora, cuandoResponda };
+}
+
+/* ===== Recursos ===== */
+const TIPO_ICON = { dossier:'📄','one-pager':'📋', presupuesto:'💶', landing:'🔗', matricula:'📝', documento:'📑' };
+function recommendResources(s){
+  const out=[];
+  // El dosier y el presupuesto se gestionan con los toggles "Incluir en el mensaje", no en el chooser.
+  DOCS.forEach(it=>{
+    if(it.tipo==='presupuesto') return;
+    if(it.formacion && it.formacion!==s.formacion) return;   // recurso de una formación concreta: solo para su lead exacto
+    if(it.rama && it.rama!==s.rama) return;
+    let sc=0;
+    if(it.formacion && it.formacion===s.formacion) sc+=6;
+    if(it.rama && it.rama===s.rama) sc+=4;
+    if(it.motivos && it.motivos.includes(s.motivo)) sc+=2;
+    if(it.pilares) sc += (it.pilares||[]).filter(p=>s.pilares.includes(p)).length*3;
+    if(it.base) sc+=2;
+    if(sc>0) out.push({...it,_s:sc, fuente:fuenteOf(it.link)||'CRM', pendiente:!it.link});
+  });
+  out.sort((a,b)=>{ const r=x=>x.tipo==='dossier'?0:(x.base?3:(x.pendiente?4:1)); return r(a)!==r(b)?r(a)-r(b):b._s-a._s; });
+  return out;
+}
+
+/* ===== UI ===== */
+let state = { nombre:'', comercial:'', formacion:'', rama:'', genero:'neu', momento:'primera', motivo:'seguridad', pilares:['insercion'], sub:['insercion|0'], recursosSel:['dossier','matricula'], incProx:true, incDossier:true, incPresu:false, tercero:false, rawText:'', iaReconoce:'', incPrecio:false, precioPlan:'', cuotas:0, resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
+const $ = id => document.getElementById(id);
+const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const escA = s => (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+function buildFormSelect(){
+  $('f-formacion').innerHTML = '<option value="">— Selecciona la formación —</option>' + FORMACIONES.map(([v])=>`<option value="${v}">${v}</option>`).join('');
+}
+function renderPilares(){
+  const c=$('f-pilares'); c.innerHTML='';
+  Object.keys(PILAR_LABEL).forEach(p=>{
+    const checked=state.pilares.includes(p);
+    const subs=(SUBAREAS[state.motivo]&&SUBAREAS[state.motivo][p])||[];
+    let sh='';
+    if(checked) sh='<div class="subareas">'+subs.map((su,i)=>{ const k=p+'|'+i, ck=(state.sub||[]).includes(k)?'checked':''; return `<label><input type="checkbox" class="sa" data-k="${k}" ${ck}>${esc(su.t)}</label>`; }).join('')+'</div>';
+    c.insertAdjacentHTML('beforeend', `<div class="pilar"><label class="pilar-main"><input type="checkbox" class="pilM" value="${p}" ${checked?'checked':''}>${PILAR_LABEL[p]}</label>${sh}</div>`);
+  });
+  c.querySelectorAll('.pilM').forEach(el=>el.addEventListener('change', onPilarToggle));
+  c.querySelectorAll('.sa').forEach(el=>el.addEventListener('change', ()=>{ state.sub=[...document.querySelectorAll('.sa:checked')].map(i=>i.dataset.k); renderAll(); }));
+}
+function onPilarToggle(){
+  const sel=[...document.querySelectorAll('.pilM:checked')].map(i=>i.value);
+  const keep=(state.sub||[]).filter(k=>sel.includes(k.split('|')[0]));
+  sel.forEach(p=>{ if(!keep.some(k=>k.startsWith(p+'|'))) keep.push(p+'|0'); });
+  state.pilares=sel; state.sub=keep;
+  renderPilares(); renderAll();
+}
+function setDateDefaults(){
+  if(!$('f-fecha').value){ const t=new Date(); t.setDate(t.getDate()+1); $('f-fecha').value=t.toISOString().slice(0,10); }
+  if(!$('f-hora').value) $('f-hora').value='18:00';
+}
+function fillControls(){
+  $('f-nombre').value=state.nombre; $('f-formacion').value=state.formacion; if($('f-comercial')) $('f-comercial').value=state.comercial||'';
+  (document.querySelector(`input[name=gen][value=${state.genero}]`)||{}).checked=true;
+  (document.querySelector(`input[name=mom][value=${state.momento}]`)||{}).checked=true;
+  (document.querySelector(`input[name=motivo][value=${state.motivo}]`)||{}).checked=true;
+  $('motivo-desc').textContent = MOTIVOS[state.motivo].desc;
+  if($('inc-prox')) $('inc-prox').checked = state.incProx!==false;
+  if($('inc-dossier')) $('inc-dossier').checked = state.incDossier!==false;
+  if($('inc-presu')) $('inc-presu').checked = !!state.incPresu;
+  if($('inc-precio')) $('inc-precio').checked = !!state.incPrecio;
+  setDateDefaults(); renderPilares(); renderPersonas();
+}
+window._waEdits = window._waEdits || {};
+function renderWhatsApp(){
+  const out = buildWhatsApp(state);
+  const MOM_LABEL = { primera:'Primera llamada', seguimiento:'Seguimiento', cierre:'Cierre', reactivacion:'No responde · reactivar' };
+  const COLOR = { seguridad:'var(--seg)', ego:'var(--ego)', social:'var(--soc)' };
+  $('wa-mtag').className = 'mtag mt-'+state.motivo;
+  $('wa-mtag').textContent = (MOM_LABEL[state.momento]||'Primera llamada') + ' · ' + state.motivo[0].toUpperCase()+state.motivo.slice(1);
+  const body = $('wa-body');
+  body.style.setProperty('--motivo-color', COLOR[state.motivo]||'var(--seg)');
+  const linkify = t => { let first=true; return esc(t).replace(/\n/g,'<br>').replace(/(https?:\/\/[^\s<]+)/g,(mtch)=>{ if(!first) return mtch; first=false; return '<span class="lnk">'+mtch+'</span>'; }); };
+  const matriPend = !DOCS.find(d=>d.tipo==='matricula' && d.link);
+  // Construir grupos normalizados [{key,titulo,items:[{etq?,t}]}]
+  let groups;
+  if (out.pasos){
+    groups = [{ key:'pasos', titulo:'Secuencia para reactivar', hint:'Manda uno, espera respuesta y, si no contesta, el siguiente.', items: out.pasos.map(p=>({etq:p.etq, t:p.t})) }];
+  } else {
+    groups = [
+      { key:'ahora', titulo:'Enviar ahora', hint:'Tu primer toque, nada más colgar.', items:(out.ahora||[]).map(t=>({t})) },
+      { key:'cuandoResponda', titulo:'Cuando responda', hint:'Para cuando conteste: ve mandándolos según fluya.', items:(out.cuandoResponda||[]).map(t=>({t})) }
+    ];
+  }
+  const flat=[];
+  let html='';
+  groups.forEach(g=>{
+    const editedItems = g.items.map((it,idx)=>{
+      const ck = g.key+'|'+idx;
+      const base = genderize(it.t, state.genero);
+      const txt = (window._waEdits[ck]!=null) ? window._waEdits[ck] : base;
+      return {...it, txt, ck};
+    });
+    // estado vacío útil para cuandoResponda sin matrícula
+    if(!editedItems.length){
+      if(g.key==='cuandoResponda' && matriPend){
+        html += `<div class="wa-group" data-group="${g.key}"><div class="wa-ghead"><span class="wa-gtitle">${g.titulo}</span></div><div class="empty-hint">Añade el enlace de matrícula en el Repertorio para que aparezca aquí el mensaje de reserva.</div></div>`;
+      }
+      return;
+    }
+    const showCount = (g.key==='ahora' || g.key==='pasos');
+    const count = showCount ? `<span class="wa-gcount">${editedItems.length} mensaje${editedItems.length===1?'':'s'}</span>` : '';
+    const hint = g.hint ? `<div class="wa-ghint">${esc(g.hint)}</div>` : '';
+    const head = g.titulo ? `<div class="wa-ghead"><span class="wa-gtitle">${g.titulo}</span>${count}<button class="btn btn-sm wa-copygroup" data-group="${g.key}">Copiar bloque</button></div>${hint}` : '';
+    let bubbles='';
+    editedItems.forEach((it,idx)=>{
+      flat.push(it.txt);
+      const vn = (g.key==='ahora' && idx===0) ? `<span class="wa-vn">🎤 ideal como nota de voz</span>` : '';
+      const etq = it.etq ? `<span class="wa-step">${esc(it.etq)}</span>` : '';
+      bubbles += `<div class="bubble" data-group="${g.key}" data-idx="${idx}" data-m="${encodeURIComponent(it.txt)}">${etq}${vn}<span class="bub-txt">${linkify(it.txt)}</span><span class="ed" title="Editar este mensaje">✎</span><span class="cp" title="Clic para copiar">⧉</span></div>`;
+    });
+    html += `<div class="wa-group" data-group="${g.key}">${head}<div class="wa-bubbles">${bubbles}</div></div>`;
+  });
+  body.innerHTML = html;
+  window._waAll = flat.join('\n\n');
+  // Recalcula el texto plano de todos los mensajes (respeta el orden y las ediciones)
+  const refreshAll = ()=>{ window._waAll=[...body.querySelectorAll('.bubble .bub-txt')].map(b=>b.innerText.trim()).join('\n\n'); };
+  // Entrar en modo edición in situ (lápiz o doble clic)
+  const startEdit = el=>{
+    if(el.classList.contains('editing')) return;
+    const tx = el.querySelector('.bub-txt');
+    const prev = tx.innerText.trim();
+    let canceled=false;
+    el.classList.add('editing'); tx.setAttribute('contenteditable','true'); tx.focus();
+    const sel=window.getSelection(), rg=document.createRange(); rg.selectNodeContents(tx); sel.removeAllRanges(); sel.addRange(rg);
+    const finish=()=>{
+      let v=tx.innerText.trim();
+      if(canceled || !v) v=prev; // Esc o burbuja vaciada: revierte al texto previo
+      // Solo se marca como edición del usuario si de verdad cambió el texto
+      if(v!==prev) window._waEdits[el.dataset.group+'|'+el.dataset.idx]=v;
+      el.dataset.m=encodeURIComponent(v);
+      tx.innerHTML=linkify(v); el.classList.remove('editing'); tx.removeAttribute('contenteditable');
+      refreshAll();
+    };
+    tx.addEventListener('blur', finish, {once:true});
+    tx.addEventListener('keydown',(k)=>{ if(k.key==='Enter'&&!k.shiftKey){ k.preventDefault(); tx.blur(); } if(k.key==='Escape'){ k.preventDefault(); canceled=true; tx.blur(); } });
+  };
+  // Copia de burbuja (clic) — suspendida mientras se edita
+  body.querySelectorAll('.bubble').forEach(el=>{
+    el.addEventListener('click', (ev)=>{
+      if(el.classList.contains('editing') || ev.target.classList.contains('ed') || ev.target.classList.contains('lnk')) return;
+      if(ev.detail>1) return; // un doble clic accidental copia una sola vez (sin doble aviso)
+      const txt = (window._waEdits[el.dataset.group+'|'+el.dataset.idx]!=null) ? window._waEdits[el.dataset.group+'|'+el.dataset.idx] : decodeURIComponent(el.dataset.m);
+      navigator.clipboard.writeText(txt).then(()=>{ toast('Mensaje copiado ✓'); el.classList.add('copied'); setTimeout(()=>el.classList.remove('copied'),1200); }).catch(()=>toast('No se pudo copiar'));
+    });
+    el.querySelector('.ed').addEventListener('click',(ev)=>{ ev.stopPropagation(); startEdit(el); });
+  });
+  // Copiar este bloque
+  body.querySelectorAll('.wa-copygroup').forEach(btn=>btn.addEventListener('click',()=>{
+    const g=btn.dataset.group;
+    const txt=[...body.querySelectorAll(`.bubble[data-group="${g}"] .bub-txt`)].map(b=>b.innerText.trim()).join('\n\n');
+    const orig=btn.textContent;
+    navigator.clipboard.writeText(txt).then(()=>{ toast('Bloque copiado ✓'); btn.textContent='Copiado ✓'; setTimeout(()=>btn.textContent=orig,1200); });
+  }));
+}
+/* ids de recursos que desactivan la objeción activa (para resaltarlos) */
+function objMatchIds(){
+  if(!state.objecionActiva) return new Set();
+  const o=OBJECIONES.find(x=>x.label===state.objecionActiva);
+  return new Set(o ? (o.recursos||[]) : []);
+}
+function renderResources(){
+  const all=recommendResources(state); const c=$('resources');
+  const f=state.resFiltros||(state.resFiltros={q:'',estado:'',cat:''});
+  const matchSet=objMatchIds();
+  // Conjunto de categorías presentes en la recomendación (para los chips de filtro)
+  const cats=[...new Set(all.map(r=>r.cat).filter(Boolean))].sort();
+  // ---- Aplicar filtros sobre la salida de recommendResources, ANTES del slice ----
+  const q=norm(f.q||'');
+  let list=all.filter(r=>{
+    if(q && !( norm(r.nombre).includes(q) || norm(r.cat||'').includes(q) || norm(r.porque||'').includes(q) )) return false;
+    if(f.estado==='enviable' && (r.pendiente || !r.link)) return false;
+    if(f.estado==='pendiente' && !r.pendiente) return false;
+    if(f.cat && (r.cat||'')!==f.cat) return false;
+    return true;
+  });
+  // contador de cobertura sobre la lista filtrada
+  const total=list.length;
+  const enviables=list.filter(r=>r.link && !r.pendiente).length;
+  const pendientes=list.filter(r=>r.pendiente).length;
+  // los que desactivan la objeción activa, arriba; luego enviables antes que pendientes
+  list.sort((a,b)=> (matchSet.has(b.id)?1:0)-(matchSet.has(a.id)?1:0) || (a.pendiente?1:0)-(b.pendiente?1:0));
+  // ---- Cabecera: buscador + chips + contador ----
+  const chipEstado = `
+    <button type="button" class="res-chip ${f.estado==='enviable'?'on':''}" data-rf="estado" data-v="enviable">Enviables</button>
+    <button type="button" class="res-chip ${f.estado==='pendiente'?'on':''}" data-rf="estado" data-v="pendiente">⏳ Pendientes</button>`;
+  const chipCats = cats.map(ct=>`<button type="button" class="res-chip ${f.cat===ct?'on':''}" data-rf="cat" data-v="${escA(ct)}">${esc(ct)}</button>`).join('');
+  let html = `<div class="res-filters">
+      <input type="text" class="res-q" id="res-q" placeholder="Buscar por nombre o categoría…" value="${escA(f.q||'')}">
+      <div class="res-chips">${chipEstado}${chipCats}</div>
+      <div class="res-count"><b>${enviables}</b> enviables · ${total} total · <span class="rc-pend"><b>${pendientes}</b> pendientes</span></div>
+    </div>
+    <div class="res-hint">Marca los que quieras enviar según la llamada 👇</div>`;
+  if(!list.length){
+    c.innerHTML = html + '<div class="empty-hint">'+ (all.length? 'Nada con este filtro.' : 'Elige la formación o ajusta motivo/pilar.') +'</div>';
+    bindResFilters(c); return;
+  }
+  c.innerHTML = html;   // limpia y pinta la cabecera; las tarjetas se añaden debajo
+  list.slice(0,30).forEach(r=>{
+    const ic = TIPO_ICON[r.tipo]||'📎';
+    const can = (r.link && !r.pendiente);
+    const isMatch = matchSet.has(r.id);
+    const checked = (state.recursosSel||[]).includes(r.id) ? 'checked' : '';
+    const pick = can ? `<input type="checkbox" class="res-sel" data-rid="${r.id}" ${checked} title="Enviar en el mensaje">` : '<span class="res-pendmark" title="Sin enlace: créalo en el repertorio">⏳</span>';
+    const objbadge = isMatch ? '<span class="res-objbadge" title="Desactiva la objeción seleccionada">desactiva esta objeción</span>' : '';
+    const tag = r.pendiente ? '<span class="res-tag res-pend">Pendiente</span>' : (r.tipo==='dossier' ? '<span class="res-tag">Dosier</span>' : '');
+    const open = can ? `<a class="res-open" href="${r.link}" target="_blank" rel="noopener" title="Abrir recurso">↗</a>` : '';
+    const pedir = r.pendiente ? `<button type="button" class="res-pedir" data-pedir="${r.id}" title="Sube su prioridad a Alta y avisa a marketing">📣 Pedir a marketing</button>` : '';
+    c.insertAdjacentHTML('beforeend', `<div class="res2 ${r.pendiente?'pend':''} ${isMatch?'obj-match':''}"><label class="res2-pick">${pick}</label><div class="res2-body"><div class="res-top">${objbadge}${tag}<span class="res-src ${r.fuente?'src-'+r.fuente:''}">${r.pendiente?'sin enlace':(r.fuente||'')}</span>${open}</div><div class="res-name">${ic} ${esc(r.nombre)}</div><div class="res-why">${esc(r.porque||'')}</div>${pedir}</div></div>`);
+  });
+  c.querySelectorAll('.res-sel').forEach(el=>el.addEventListener('change', ()=>{
+    const id=el.dataset.rid, set=new Set(state.recursosSel||[]); if(el.checked) set.add(id); else set.delete(id); state.recursosSel=[...set]; renderWhatsApp();
+  }));
+  c.querySelectorAll('.res-pedir').forEach(el=>el.addEventListener('click', ()=>{
+    const id=el.dataset.pedir, d=DOCS.find(x=>x.id===id); if(!d) return;
+    d.prioridad='Alta'; d._demanda=(d._demanda||0)+1; saveDocs();
+    el.textContent='Pedido ✓'; el.classList.add('done'); el.disabled=true;
+    toast('Pedido a marketing ✓ — sube a P0');
+    renderManager();
+  }));
+  bindResFilters(c);
+}
+function bindResFilters(c){
+  const q=c.querySelector('#res-q');
+  if(q) q.addEventListener('input', ()=>{ state.resFiltros.q=q.value; const pos=q.selectionStart; renderResources(); const nq=$('res-q'); if(nq){ nq.focus(); try{ nq.setSelectionRange(pos,pos); }catch(e){} } });
+  c.querySelectorAll('[data-rf]').forEach(el=>el.addEventListener('click', ()=>{
+    const f=el.dataset.rf, v=el.dataset.v;
+    state.resFiltros[f] = (state.resFiltros[f]===v) ? '' : v;   // toggle
+    renderResources();
+  }));
+}
+function renderObjeciones(){
+  const wrap=$('obj-chips'); wrap.innerHTML=OBJECIONES.map((o,i)=>`<button class="obj-chip" data-i="${i}">${esc(o.label)}</button>`).join('');
+  wrap.querySelectorAll('.obj-chip').forEach(el=>el.addEventListener('click', ()=>{ wrap.querySelectorAll('.obj-chip').forEach(x=>x.classList.remove('on')); el.classList.add('on'); showObj(+el.dataset.i); }));
+  const first=wrap.querySelector('.obj-chip'); if(first){ first.classList.add('on'); showObj(0); }
+}
+function renderPersonas(){
+  const wrap=$('persona-chips'); if(!wrap) return;
+  wrap.innerHTML=PERSONAS.map((p,i)=>`<button type="button" class="persona-chip ${state.persona===p.label?'on':''}" data-pi="${i}">${p.emoji?p.emoji+' ':''}${esc(p.label)}</button>`).join('');
+  wrap.querySelectorAll('.persona-chip').forEach(el=>el.addEventListener('click', ()=>applyPersona(+el.dataset.pi)));
+}
+function applyPersona(i){
+  const p=PERSONAS[i]; if(!p) return;
+  state.persona=p.label;
+  state.motivo=p.motivo;
+  state.pilares=[...p.pilares];
+  state.sub=[...p.sub];
+  // Añade dossier + matrícula + recursos estrella de la persona a la selección
+  const set=new Set(state.recursosSel||[]);
+  set.add('dossier'); set.add('matricula');
+  (p.recursos||[]).forEach(id=>set.add(id));
+  state.recursosSel=[...set];
+  // Refleja chip de persona activo
+  $('persona-chips').querySelectorAll('.persona-chip').forEach(x=>x.classList.toggle('on', +x.dataset.pi===i));
+  fillControls(); renderAll();
+  // Marca la objeción de la persona (si la tiene)
+  if(p.objecion){
+    const oi=OBJECIONES.findIndex(o=>o.label===p.objecion);
+    if(oi>=0){ const chip=$('obj-chips').querySelector(`.obj-chip[data-i="${oi}"]`); if(chip){ $('obj-chips').querySelectorAll('.obj-chip').forEach(x=>x.classList.remove('on')); chip.classList.add('on'); } showObj(oi); }
+  }
+  toast('Perfil aplicado: '+p.label);
+}
+function showObj(i){
+  const o=OBJECIONES[i]; const g=genderize(o.wa, state.genero||'neu');
+  // Conectar la objeción con los recursos que la desactivan (resalta el panel de recursos)
+  state.objecionActiva=o.label;
+  // "Mándale también:" — recursos que combaten la objeción (enviables y pendientes en ámbar)
+  let recoHtml='';
+  const recos=(o.recursos||[]).map(id=>DOCS.find(d=>d.id===id)).filter(Boolean);
+  if(recos.length){
+    recoHtml = '<div class="obj-recos"><div class="obj-recos-lbl">Mándale también:</div>' + recos.map(d=>{
+      const ic=TIPO_ICON[d.tipo]||'📎';
+      const can=!!d.link;
+      if(can) return `<a class="obj-reco can" href="${d.link}" target="_blank" rel="noopener">${ic} ${esc(d.nombre)}<span class="or-tag can">enviar ↗</span></a>`;
+      return `<div class="obj-reco pend">${ic} ${esc(d.nombre)}<span class="or-tag pend">⏳ pendiente</span></div>`;
+    }).join('') + '</div>';
+  }
+  $('obj-detail').innerHTML=`<div class="obj-grid">
+      <div><b>Qué esconde</b><p>${esc(o.esconde)}</p></div>
+      <div><b>Pregunta</b><p>${esc(o.pregunta)}</p></div>
+      <div><b>Frase (en la llamada)</b><p>${esc(o.frase)}</p></div>
+      <div><b>Siguiente paso</b><p>${esc(o.paso)}</p></div>
+    </div>
+    <div class="obj-wa-label">Mensaje de WhatsApp para esta objeción</div>
+    <div class="wa-chat" style="padding:12px"><div class="bubble obj-bubble" data-m="${encodeURIComponent(g)}" title="Clic para copiar">${esc(g)}<span class="cp" title="Clic para copiar">⧉</span></div></div>
+    ${recoHtml}`;
+  const b=$('obj-detail').querySelector('.obj-bubble');
+  b.addEventListener('click',()=>navigator.clipboard.writeText(decodeURIComponent(b.dataset.m)).then(()=>{ toast('Mensaje copiado ✓'); b.classList.add('copied'); setTimeout(()=>b.classList.remove('copied'),1200); }));
+  // Resaltar/subir los recursos que desactivan esta objeción en el panel de "Recursos a enviar"
+  renderResources();
+}
+/* ----- Manager ----- */
+let mgrFilter='todos', mgrQuery='', mgrOpen=new Set();
+const MGR_FOLDERS=[
+  ['plataforma','🖥️','Plataforma y campus'],
+  ['metodologia','📚','Metodología de estudio'],
+  ['salidas','🎯','Salidas profesionales'],
+  ['empleo','💼','Empleo y prácticas'],
+  ['ia','🤖','Máster de IA y tecnología'],
+  ['comunidad','💚','Comunidad y acompañamiento'],
+  ['financiacion','💳','Financiación y becas'],
+  ['presupuesto','💶','Presupuestos por formación'],
+  ['confianza','🛡️','Confianza y oficialidad'],
+  ['testimonio','⭐','Testimonios y casos de éxito'],
+  ['perfil','👤','Recursos por buyer persona'],
+  ['matricula','📝','Matrícula y reserva'],
+  ['landing','🔗','Landings y web']
+];
+function folderKey(cat){ return MGR_FOLDERS.some(x=>x[0]===cat)?cat:'__otros'; }
+function folderMeta(k){ const f=MGR_FOLDERS.find(x=>x[0]===k); return f?{ic:f[1],name:f[2]}:{ic:'📁',name:'Otros recursos'}; }
+function mgrChip(d,i,f,v,lbl){ return `<button type="button" class="mgr-chip ${(d[f]||[]).includes(v)?'on':''}" data-mt data-i="${i}" data-f="${f}" data-v="${v}">${lbl}</button>`; }
+function mgrRow(d,i){
+  const ramaOpts=['',...RAMAS].map(r=>`<option value="${r}" ${d.rama===r?'selected':''}>${r||'Todas'}</option>`).join('');
+  const prioOpts=['Alta','Media','Baja'].map(p=>`<option ${d.prioridad===p?'selected':''}>${p}</option>`).join('');
+  const est=d.link?'<span class="est-ok">✅ Creado</span>':'<span class="est-pend">⏳ Pendiente</span>';
+  return `<tr>
+    <td><input type="text" data-mi data-i="${i}" data-f="nombre" value="${escA(d.nombre)}"></td>
+    <td><span class="mgr-cat">${esc(d.cat||'—')}</span></td>
+    <td style="white-space:nowrap">${mgrChip(d,i,'motivos','seguridad','Seg')}${mgrChip(d,i,'motivos','ego','Ego')}${mgrChip(d,i,'motivos','social','Soc')}</td>
+    <td style="white-space:nowrap">${mgrChip(d,i,'pilares','insercion','Ins')}${mgrChip(d,i,'pilares','costes','Cos')}${mgrChip(d,i,'pilares','autonomia','Aut')}</td>
+    <td><select data-ms data-i="${i}" data-f="rama">${ramaOpts}</select></td>
+    <td><select data-ms data-i="${i}" data-f="prioridad">${prioOpts}</select></td>
+    <td>${est}</td>
+    <td><input type="text" data-mi data-i="${i}" data-f="link" value="${escA(d.link)}" placeholder="pegar enlace…"></td>
+    <td><button class="mgr-del" data-i="${i}" title="Eliminar">✕</button></td>
+  </tr>`;
+}
+function renderManager(){
+  const total=DOCS.length, pend=DOCS.filter(d=>!d.link).length;
+  const cn=$('mgr-count'); if(cn) cn.textContent=total+' recursos · '+pend+' pendientes';
+  const q=(mgrQuery||'').trim().toLowerCase();
+  const items=DOCS.map((d,i)=>({d,i})).filter(o=>{
+    if(mgrFilter==='pendientes' && o.d.link) return false;
+    if(mgrFilter==='creados' && !o.d.link) return false;
+    if(q){ const hay=((o.d.nombre||'')+' '+(o.d.cat||'')+' '+(o.d.rama||'')+' '+(o.d.formacion||'')).toLowerCase(); if(hay.indexOf(q)<0) return false; }
+    return true;
+  });
+  const groups={}; items.forEach(o=>{ const k=folderKey(o.d.cat); (groups[k]=groups[k]||[]).push(o); });
+  const order=MGR_FOLDERS.map(x=>x[0]).concat(['__otros']);
+  const head='<thead><tr><th>Recurso</th><th>Categoría</th><th>Perfil</th><th>Pilar</th><th>Rama</th><th>Prioridad</th><th>Estado</th><th>Enlace</th><th></th></tr></thead>';
+  let body='', shown=0;
+  order.forEach(k=>{
+    const g=groups[k]; if(!g||!g.length) return;
+    shown+=g.length;
+    const meta=folderMeta(k), gp=g.filter(o=>!o.d.link).length;
+    const open = q ? true : mgrOpen.has(k);
+    const pendTxt = gp? (' · <span class="fld-pend">'+gp+' pend.</span>'):'';
+    const countTxt = g.length+' recurso'+(g.length>1?'s':'')+pendTxt;
+    body += '<tr class="mgr-folder '+(open?'open':'')+'" data-fld="'+k+'"><td colspan="9"><div class="fld-h"><span class="fld-ic">'+meta.ic+'</span><span class="fld-name">'+esc(meta.name)+'</span><span class="fld-count">'+countTxt+'</span><span class="fld-chev">›</span></div></td></tr>';
+    if(open) body += g.map(o=>mgrRow(o.d,o.i)).join('');
+  });
+  if(!shown) body='<tr><td colspan="9" class="empty-hint">Nada que mostrar con este filtro o búsqueda.</td></tr>';
+  $('mgr-list').innerHTML='<div class="mgr-wrap"><table class="mgr-table">'+head+'<tbody>'+body+'</tbody></table></div>';
+  const c=$('mgr-list');
+  c.querySelectorAll('.mgr-folder').forEach(el=>el.addEventListener('click', ()=>{ const k=el.dataset.fld; if(mgrOpen.has(k))mgrOpen.delete(k); else mgrOpen.add(k); renderManager(); }));
+  c.querySelectorAll('[data-mi]').forEach(el=>el.addEventListener('input', onMgrChange));
+  c.querySelectorAll('[data-ms]').forEach(el=>el.addEventListener('change', onMgrChange));
+  c.querySelectorAll('[data-mt]').forEach(el=>el.addEventListener('click', ()=>{ const i=+el.dataset.i,f=el.dataset.f,v=el.dataset.v,a=DOCS[i][f]||[],j=a.indexOf(v); if(j<0)a.push(v); else a.splice(j,1); DOCS[i][f]=a; saveDocs(); renderManager(); renderAll(); }));
+  c.querySelectorAll('.mgr-del').forEach(el=>el.addEventListener('click', (e)=>{ e.stopPropagation(); DOCS.splice(+el.dataset.i,1); saveDocs(); renderManager(); renderAll(); toast('Recurso eliminado'); }));
+}
+function onMgrChange(e){
+  const el=e.target, i=+el.dataset.i, f=el.dataset.f;
+  DOCS[i][f]=el.value;
+  if(f==='link'){ const tr=el.closest('tr'), cell=tr&&tr.children[6]; if(cell) cell.innerHTML=el.value?'<span class="est-ok">✅ Creado</span>':'<span class="est-pend">⏳ Pendiente</span>'; }
+  saveDocs(); renderResources(); renderWhatsApp();
+}
+function copyMarketing(){
+  const pend=DOCS.filter(d=>!d.link), ord={Alta:0,Media:1,Baja:2};
+  const sorted=pend.slice().sort((a,b)=>(ord[a.prioridad]==null?9:ord[a.prioridad])-(ord[b.prioridad]==null?9:ord[b.prioridad]));
+  let txt='RECURSOS A CREAR — Explora FP × Ucademy ('+pend.length+' pendientes)\n', cur='';
+  sorted.forEach(d=>{ const p=d.prioridad||'Sin prioridad'; if(p!==cur){cur=p; txt+='\n## PRIORIDAD '+p.toUpperCase()+'\n';} const perfil=(d.motivos||[]).join('/')||'todos'; const rama=d.rama||'todas las ramas'; txt+='- '+d.nombre+'  ('+(d.cat||'')+' · '+rama+' · perfil: '+perfil+')\n'; });
+  navigator.clipboard.writeText(txt).then(()=>toast('Lista copiada para marketing ✓ ('+pend.length+')')).catch(()=>toast('No se pudo copiar'));
+}
+function renderAll(){ renderWhatsApp(); renderResources(); renderPrecio(); }
+function renderPrecio(){
+  const box=$('precio-cfg'); if(!box) return;
+  const info=planesDe(state.formacion);
+  if(!info || !state.incPrecio){ box.style.display='none'; box.innerHTML=''; return; }
+  box.style.display='flex';
+  const defKey=planPorDefecto(info); const cur=(state.precioPlan&&info.planes.some(p=>p.key===state.precioPlan))?state.precioPlan:defKey;
+  const cuotas=(+state.cuotas>0)?+state.cuotas:info.meses;
+  const planSel=info.planes.length>1?('<label class="pc-l">Plan <select id="precio-plan">'+info.planes.map(p=>'<option value="'+p.key+'" '+(p.key===cur?'selected':'')+'>'+esc(p.label)+'</option>').join('')+'</select></label>'):('<span class="pc-only">'+esc(info.planes[0].label)+'</span>');
+  box.innerHTML=planSel+'<label class="pc-l">Cuotas <input type="number" id="precio-cuotas" min="1" max="60" value="'+cuotas+'"></label>';
+  const ps=$('precio-plan'); if(ps) ps.addEventListener('change',function(e){ state.precioPlan=e.target.value; renderWhatsApp(); });
+  const cu=$('precio-cuotas'); if(cu) cu.addEventListener('input',function(e){ state.cuotas=+e.target.value||0; renderWhatsApp(); });
+}
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1700); }
+
+function run(){
+  const mo=$('motivacion').value.trim(), co=$('contexto').value.trim();
+  if(!mo && !co){ toast('Escribe la motivación y/o el contexto.'); return; }
+  const a=analyze(mo,co);
+  const formacion=$('f-formacion').value||'';
+  const nombre=$('f-nombre').value.trim()||'';
+  state = { ...a, nombre, comercial:($('f-comercial')&&$('f-comercial').value.trim())||'', formacion, rama:ramaOf(formacion), genero:guessGender(nombre), momento:'primera', sub:a.pilares.map(p=>p+'|0'), recursosSel:['dossier','matricula'], incProx:$('inc-prox')?$('inc-prox').checked:true, incDossier:$('inc-dossier')?$('inc-dossier').checked:true, incPresu:$('inc-presu')?$('inc-presu').checked:false, incPrecio:$('inc-precio')?$('inc-precio').checked:false, precioPlan:'', cuotas:0, iaReconoce:'', resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
+  window._waEdits={};
+  fillControls(); renderAll();
+  $('results').classList.add('show'); $('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+/* init */
+buildFormSelect(); renderManager(); renderObjeciones(); renderPersonas();
+$('btn-manager').addEventListener('click', ()=>{ const m=$('manager'); m.classList.toggle('show'); if(m.classList.contains('show')) m.scrollIntoView({behavior:'smooth',block:'start'}); });
+$('mgr-add').addEventListener('click', ()=>{ DOCS.unshift({id:'doc'+Date.now(), nombre:'Nuevo recurso', tipo:'documento', cat:'', rama:'', pilares:[], motivos:[], prioridad:'Media', link:''}); mgrOpen.add('__otros'); saveDocs(); renderManager(); renderAll(); });
+$('mgr-reset').addEventListener('click', ()=>{ DOCS=JSON.parse(JSON.stringify(DEFAULT_DOCS)); saveDocs(); renderManager(); renderAll(); toast('Repertorio restablecido'); });
+$('mgr-filter').addEventListener('change', e=>{ mgrFilter=e.target.value; renderManager(); });
+$('mgr-search').addEventListener('input', e=>{ mgrQuery=e.target.value; renderManager(); });
+$('mgr-toggleall').addEventListener('click', ()=>{ const keys=[...new Set(DOCS.map(d=>folderKey(d.cat)))]; const anyOpen=keys.some(k=>mgrOpen.has(k)); if(anyOpen) mgrOpen.clear(); else keys.forEach(k=>mgrOpen.add(k)); $('mgr-toggleall').textContent=anyOpen?'Expandir todo':'Plegar todo'; renderManager(); });
+$('mgr-copy').addEventListener('click', copyMarketing);
+$('analyzeBtn').addEventListener('click', run);
+if($('inc-prox')) $('inc-prox').addEventListener('change', e=>{ state.incProx=e.target.checked; renderWhatsApp(); });
+if($('inc-dossier')) $('inc-dossier').addEventListener('change', e=>{ state.incDossier=e.target.checked; renderWhatsApp(); });
+if($('inc-presu')) $('inc-presu').addEventListener('change', e=>{ state.incPresu=e.target.checked; renderWhatsApp(); });
+if($('inc-precio')) $('inc-precio').addEventListener('change', e=>{ state.incPrecio=e.target.checked; renderAll(); });
+
+/* ----- Conector HubSpot: pegar URL del negocio -> rellena los campos ----- */
+const HS_PORTAL='25603833';
+function hsDealUrl(id){ return 'https://app.hubspot.com/contacts/'+HS_PORTAL+'/record/0-3/'+id; }
+function parseDealId(u){ if(!u) return ''; u=String(u).trim(); let m=u.match(/\/(?:deal|record\/0-3|0-3)\/(\d{4,})/); if(m) return m[1]; m=u.match(/[?&](?:dealId|objectId)=(\d{4,})/); if(m) return m[1]; if(/^\d{4,}$/.test(u)) return u; m=u.match(/(\d{6,})/); return m?m[1]:''; }
+function hsHint(msg,type){ const e=$('hs-hint'); if(!e) return; e.innerHTML=msg; e.className='hs-hint'+(type?' '+type:''); }
+function hsState(){ hsHint('Listo: pega la URL del negocio (o su ID) y pulsa «Traer del CRM». El backend ya está configurado por defecto; si usas otro proxy, ponlo en ⚙︎.','ok'); }
+// Aplica la "lectura" que devuelve Claude (motivo, pilares y reconocimiento personalizado)
+function aplicarLectura(l){
+  if(!l) return;
+  const MOT=['seguridad','ego','social'], PIL=['insercion','costes','autonomia'];
+  if(l.motivo && MOT.indexOf(l.motivo)>=0) state.motivo=l.motivo;
+  if(Array.isArray(l.pilares)){ const ps=l.pilares.filter(p=>PIL.indexOf(p)>=0); if(ps.length){ state.pilares=ps; state.sub=ps.map(p=>p+'|0'); } }
+  if(l.reconocimiento) state.iaReconoce=String(l.reconocimiento).trim();
+  fillControls(); renderAll();
+}
+// Base del proxy para la llamada POST a Claude (mismo val/función, sin el ?id=)
+function iaBase(){ if(window._hsBase) return window._hsBase; var c=localStorage.getItem('hs_connector'); if(c) return c.split('?')[0].replace(/\/+$/,''); return '/api/deal'; }
+// 2ª pasada IA: Claude ELIGE sub-áreas y recursos a enviar según lo que busca el lead. El comercial puede editar luego.
+async function iaElige(s){
+  try{
+    const base=iaBase(); if(!base) return;
+    const mo=($('motivacion').value||''), co=($('contexto').value||''); if(!mo && !co) return;
+    const subsAvail=[]; ['insercion','costes','autonomia'].forEach(function(pil){ var arr=(SUBAREAS[s.motivo]&&SUBAREAS[s.motivo][pil])||[]; arr.forEach(function(a,i){ subsAvail.push({k:pil+'|'+i,t:a.t}); }); });
+    const recs=recommendResources(s).filter(function(r){return r.link && !r.pendiente;}).slice(0,24).map(function(r){return {id:r.id,n:r.nombre,c:r.cat,t:r.tipo};});
+    const dos=dossierFor(s.formacion); const hayDos=!!(dos&&dos.link&&!dos.pendiente);
+    const presu=DOCS.find(function(d){return d.tipo==='presupuesto'&&d.link&&d.formacion===s.formacion;})||DOCS.find(function(d){return d.tipo==='presupuesto'&&d.link&&!d.formacion;}); const hayPresu=!!presu;
+    const sys="Eres comercial senior de FP (Explora FP x Ucademy). Segun lo que busca el lead, eliges QUE mandarle por WhatsApp: pocos recursos y certeros, y los puntos de valor (sub-areas) que mas le encajan. Devuelve SOLO un JSON valido.";
+    const user="MOTIVACION: "+mo+"\nCONTEXTO: "+co+"\nMOTIVO: "+s.motivo+"\nFORMACION: "+s.formacion+
+      "\n\nSUB-AREAS disponibles (elige 2 a 4 claves, las que de verdad le mueven):\n"+subsAvail.map(function(x){return x.k+' = '+x.t;}).join('\n')+
+      "\n\nRECURSOS enviables (elige los IDs utiles para SU caso, pocos y al grano):\n"+(recs.length?recs.map(function(r){return r.id+' = '+r.n+' ['+r.c+'/'+r.t+']';}).join('\n'):'(ninguno)')+
+      "\n\nDosier disponible: "+(hayDos?'si':'no')+". Presupuesto disponible: "+(hayPresu?'si':'no')+"."+
+      "\n\nPrecio/cuotas disponible: si (activa incluir_precio SOLO si el lead es sensible al precio o pregunta por dinero)." +
+      '\n\nDevuelve JSON: {"subs":["clave",...],"recursos":["id",...],"incluir_dosier":true,"incluir_presupuesto":false,"incluir_precio":false}';
+    const r=await fetch(base,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({system:sys,user:user,max_tokens:500})});
+    if(!r.ok) return; const j=await r.json(); const txt=(j&&j.text)||''; const mm=txt.match(/\{[\s\S]*\}/); if(!mm) return;
+    const sel=JSON.parse(mm[0]);
+    const validK=new Set(subsAvail.map(function(x){return x.k;}));
+    if(Array.isArray(sel.subs)){ var ss=sel.subs.filter(function(k){return validK.has(k);}); if(ss.length){ state.sub=ss; state.pilares=[...new Set(ss.map(function(k){return k.split('|')[0];}))]; } }
+    const validId=new Set(recs.map(function(r){return r.id;}));
+    if(Array.isArray(sel.recursos)){ state.recursosSel=sel.recursos.filter(function(id){return validId.has(id);}); }
+    if(typeof sel.incluir_dosier==='boolean') state.incDossier=sel.incluir_dosier;
+    if(typeof sel.incluir_presupuesto==='boolean') state.incPresu=sel.incluir_presupuesto;
+    if(typeof sel.incluir_precio==='boolean') state.incPrecio=sel.incluir_precio;
+    fillControls(); renderAll();
+  }catch(_){}
+}
+function hsProp(d,k){ if(!d) return undefined; if(d.properties && d.properties[k]!=null) return d.properties[k]; return d[k]; }
+function fillFromDeal(d){
+  const mot=hsProp(d,'motivacion_ulterior')||'', ctx=hsProp(d,'contexto_personal')||'';
+  $('motivacion').value=mot; $('contexto').value=ctx;
+  const nom=hsProp(d,'nombre')||hsProp(d,'firstname')||hsProp(d,'contact_firstname')||'';
+  if(nom) $('f-nombre').value=String(nom).trim().split(/\s+/)[0];
+  const com=hsProp(d,'owner_firstname')||(hsProp(d,'owner_name')||'').split(/\s+/)[0]||'';
+  if(com){ const c=$('f-comercial'); if(c) c.value=com; }
+  const prog=hsProp(d,'formacion')||hsProp(d,'formacion_de_interes')||hsProp(d,'programa')||hsProp(d,'producto')||'';
+  if(prog){ const np=String(prog).toLowerCase().trim(); const hit=FORMACIONES.find(function(x){ var nv=x[0].toLowerCase(); return nv.indexOf(np)>=0 || (np.length>3 && np.indexOf(nv.replace(/\s+(gm|gs)\b/,'').trim())>=0); }); if(hit) $('f-formacion').value=hit[0]; }
+  return !!(mot||ctx);
+}
+function traerDeHubspot(){
+  const id=parseDealId(($('hs-url').value)||'');
+  if(!id){ hsHint('No reconozco esa URL. Pega el enlace del negocio (deal) de HubSpot.','warn'); return; }
+  const explicit=localStorage.getItem('hs_connector');
+  const cands = explicit ? [explicit] : ['/api/deal?id={id}','https://explora--9f982946708111f1a2831607ee4eb77e.web.val.run?id={id}'];
+  const headers={}; const tok=localStorage.getItem('hs_token')||''; if(tok) headers['Authorization']='Bearer '+tok;
+  hsHint('Trayendo datos del negocio '+id+'…','load');
+  (function tryC(i){
+    if(i>=cands.length){ hsHint('No se pudo conectar con el proxy. Configúralo en ⚙︎.','warn'); return; }
+    const conn=cands[i];
+    const target = conn.indexOf('{id}')>=0 ? conn.replace('{id}',encodeURIComponent(id)) : (conn + (conn.indexOf('?')>=0?'&':'?') + 'id=' + encodeURIComponent(id));
+    fetch(target,{headers:headers})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(async function(d){ window._hsBase=conn.split('?')[0].replace(/\/+$/,''); if(fillFromDeal(d)){ run(); aplicarLectura(d.lectura); hsHint('Aplicando lectura de Claude…','load'); await iaElige(state); hsHint('Datos de HubSpot ✓ — Claude eligió pilares, sub-áreas y recursos (negocio '+id+'). Edítalo si quieres.','ok'); } else { hsHint('El negocio '+id+' no tiene Motivación Ulterior ni Contexto personal rellenos.','warn'); } })
+      .catch(function(e){ if(i+1<cands.length){ tryC(i+1); } else { hsHint('No se pudo conectar ('+e.message+'). Configura tu proxy en ⚙︎.','warn'); } });
+  })(0);
+}
+function configHubspot(){
+  const cur=localStorage.getItem('hs_connector')||'';
+  const v=prompt('URL de tu proxy de HubSpot, con {id} donde va el ID del negocio (ej: https://tu-proxy.workers.dev/deal/{id}). Vacío = borrar conexión.', cur);
+  if(v===null) return;
+  if(v.trim()){ localStorage.setItem('hs_connector', v.trim()); const t=prompt('(Opcional) Clave/secreto para el proxy. Vacío = ninguno.', localStorage.getItem('hs_token')||''); if(t!==null){ if(t.trim()) localStorage.setItem('hs_token', t.trim()); else localStorage.removeItem('hs_token'); } toast('Conexión HubSpot guardada'); }
+  else { localStorage.removeItem('hs_connector'); localStorage.removeItem('hs_token'); toast('Conexión HubSpot borrada'); }
+  hsState();
+}
+$('hs-fetch').addEventListener('click', traerDeHubspot);
+$('hs-config').addEventListener('click', configHubspot);
+$('hs-url').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); traerDeHubspot(); } });
+hsState();
+document.querySelectorAll('[data-ex]').forEach(b=>b.addEventListener('click', ()=>{ const e=EXAMPLES[b.dataset.ex]; $('motivacion').value=e.m; $('contexto').value=e.c; $('f-nombre').value=e.nombre||''; $('f-formacion').value=e.formacion||''; run(); }));
+$('f-nombre').addEventListener('input', ()=>{ state.nombre=$('f-nombre').value.trim(); state.genero=guessGender(state.nombre); (document.querySelector(`input[name=gen][value=${state.genero}]`)||{}).checked=true; renderAll(); });
+$('f-comercial').addEventListener('input', ()=>{ state.comercial=$('f-comercial').value.trim(); renderWhatsApp(); });
+$('f-formacion').addEventListener('change', ()=>{ state.formacion=$('f-formacion').value; state.rama=ramaOf(state.formacion); renderAll(); });
+['f-fecha','f-hora','f-inicio'].forEach(id=>$(id)&&$(id).addEventListener('input', renderWhatsApp));
+document.querySelectorAll('input[name=gen]').forEach(r=>r.addEventListener('change', ()=>{ state.genero=document.querySelector('input[name=gen]:checked').value; renderAll(); const on=$('obj-chips').querySelector('.obj-chip.on'); if(on) showObj(+on.dataset.i); }));
+document.querySelectorAll('input[name=mom]').forEach(r=>r.addEventListener('change', ()=>{ state.momento=document.querySelector('input[name=mom]:checked').value; window._waEdits={}; renderAll(); }));
+document.querySelectorAll('input[name=motivo]').forEach(r=>r.addEventListener('change', ()=>{
+  state.motivo=document.querySelector('input[name=motivo]:checked').value;
+  $('motivo-desc').textContent=MOTIVOS[state.motivo].desc;
+  state.sub=state.pilares.map(p=>p+'|0');
+  window._waEdits={};
+  renderPilares(); renderAll();
+}));
+$('copyAll').addEventListener('click', ()=>{
+  // Recalcula en el momento desde el chat: incluye ambos bloques en orden y respeta ediciones
+  const all=[...$('wa-body').querySelectorAll('.bubble .bub-txt')].map(b=>b.innerText.trim()).filter(Boolean).join('\n\n');
+  navigator.clipboard.writeText(all||window._waAll||'').then(()=>toast('Todos los mensajes copiados ✓'));
+});
+</script>
+</body>
+</html>
