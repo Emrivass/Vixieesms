@@ -79,10 +79,6 @@
   .subareas input{width:15px;height:15px;accent-color:var(--accent);flex-shrink:0;}
   .wa-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
   .wa-bar .mtag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent-strong);}
-  .wa-iastatus{font-size:11px;color:var(--ink-faint);line-height:1.3;}
-  .wa-iastatus:empty{display:none;}
-  .wa-iastatus.ok{color:var(--accent-strong);} .wa-iastatus.warn{color:var(--warm);} .wa-iastatus.load{color:var(--ink-soft);}
-  @media(max-width:560px){ .wa-iastatus{flex-basis:100%;order:3;} }
   .wa-chat{background:var(--wa-bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;min-height:120px;background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 0);background-size:18px 18px;}
   .bubble{position:relative;align-self:flex-end;max-width:90%;background:var(--wa);border:1px solid var(--wa-line);border-radius:12px 12px 4px 12px;padding:9px 58px 9px 13px;font-size:13.7px;line-height:1.5;cursor:pointer;box-shadow:0 1px 1px rgba(0,0,0,.05);transition:.12s;word-break:break-word;}
   .bubble:hover{filter:brightness(1.02);border-color:var(--accent);}
@@ -198,12 +194,6 @@
   .precio-cfg select,.precio-cfg input{border:1px solid var(--line);border-radius:7px;padding:5px 7px;font-family:var(--sans);font-size:12.5px;background:#fff;color:var(--ink);}
   .precio-cfg input[type=number]{width:64px;}
   .precio-cfg .pc-only{font-weight:600;color:var(--ink-soft);}
-  .adv-field{margin-bottom:14px;border:1px dashed var(--line);border-radius:10px;padding:0 11px;background:var(--surface-2);}
-  .adv-field summary{cursor:pointer;padding:10px 2px;font-size:12px;font-weight:600;color:var(--ink-soft);list-style:none;}
-  .adv-field summary::-webkit-details-marker{display:none;}
-  .adv-field summary:before{content:'▸ ';color:var(--ink-faint);}
-  .adv-field[open] summary:before{content:'▾ ';}
-  .adv-field>div{padding-bottom:10px;}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 18px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:20;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .empty-hint{color:var(--ink-faint);font-size:13px;padding:10px 0;}
@@ -274,7 +264,7 @@
     <div class="card input-card">
       <div class="hs-bar">
         <span class="hs-ic">🟠</span>
-        <input type="text" id="hs-url" class="hs-url" placeholder="Pega el Record ID del negocio (p. ej. 494908106958)…">
+        <input type="text" id="hs-url" class="hs-url" placeholder="Pega la URL del negocio de HubSpot y traigo motivación y contexto…">
         <button class="btn btn-primary btn-sm" id="hs-fetch">Traer del CRM</button>
         <button class="btn btn-sm" id="hs-config" title="Configurar conexión con HubSpot">⚙︎</button>
       </div>
@@ -299,7 +289,7 @@
       <div class="cols">
         <div class="card panel col-lectura">
           <h3>Lectura de la llamada</h3>
-          <p class="sub">Pega el Record ID y <b>Claude elige</b> qué dosier y recursos mandar y adapta el mensaje, según el perfil del lead y lo que sabemos de él. Aquí solo revisas y ajustas si hace falta.</p>
+          <p class="sub">Claude deja la llamada <b>leída</b> (motivo, pilares, sub-áreas y recursos) desde el contexto del negocio. Revisa y ajusta lo que quieras: género, formación o las marcas.</p>
           <div class="field"><label>Nombre del lead</label><input type="text" id="f-nombre" placeholder="(escríbelo)"></div>
           <div class="field"><label>Comercial (propietario del negocio)</label><input type="text" id="f-comercial" placeholder="(se trae de HubSpot; firma el mensaje)"></div>
           <div class="field"><label>Formación de interés</label><select id="f-formacion"></select></div>
@@ -329,7 +319,7 @@
             </div>
             <div class="motivo-desc" id="motivo-desc"></div>
           </div>
-          <details class="adv-field"><summary>Pilares y sub-áreas — los elige la IA ✨ (abre solo para editar)</summary><div id="f-pilares"></div></details>
+          <div class="field"><label>Pilares y sub-áreas que le mueven</label><div id="f-pilares"></div></div>
           <div class="field"><label>Próximo contacto (día y hora acordados)</label>
             <div class="row2"><input type="date" id="f-fecha" style="flex:1"><input type="time" id="f-hora" style="width:108px"></div>
           </div>
@@ -338,12 +328,10 @@
 
         <div class="card panel col-wa">
           <h3>Mensajes de WhatsApp</h3>
-          <p class="sub">Los escribe Claude como un comercial tras la llamada. Clic en un mensaje para copiarlo; el lápiz ✎ lo abre para ajustarlo antes de enviarlo.</p>
+          <p class="sub">Clic en un mensaje para copiarlo. El lápiz ✎ lo abre para ajustar una palabra antes de enviarlo.</p>
           <div class="wa-bar">
             <span class="mtag" id="wa-mtag"></span>
-            <span class="wa-iastatus" id="wa-iastatus"></span>
             <div class="spacer"></div>
-            <button class="btn btn-sm" id="regenIA" title="Que Claude vuelva a redactar los mensajes">✨ Regenerar con IA</button>
             <button class="btn btn-sm btn-primary" id="copyAll">Copiar todos</button>
           </div>
           <div class="wa-chat" id="wa-body"></div>
@@ -3344,7 +3332,7 @@ function recommendResources(s){
 }
 
 /* ===== UI ===== */
-let state = { nombre:'', comercial:'', formacion:'', rama:'', genero:'neu', momento:'primera', motivo:'seguridad', pilares:['insercion'], sub:['insercion|0'], recursosSel:['dossier','matricula'], incProx:true, incDossier:true, incPresu:false, tercero:false, rawText:'', iaReconoce:'', incPrecio:false, precioPlan:'', cuotas:0, iaMensajes:null, resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
+let state = { nombre:'', comercial:'', formacion:'', rama:'', genero:'neu', momento:'primera', motivo:'seguridad', pilares:['insercion'], sub:['insercion|0'], recursosSel:['dossier','matricula'], incProx:true, incDossier:true, incPresu:false, tercero:false, rawText:'', iaReconoce:'', incPrecio:false, precioPlan:'', cuotas:0, resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
 const $ = id => document.getElementById(id);
 const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const escA = s => (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
@@ -3389,7 +3377,7 @@ function fillControls(){
 }
 window._waEdits = window._waEdits || {};
 function renderWhatsApp(){
-  const out = state.iaMensajes || buildWhatsApp(state);
+  const out = buildWhatsApp(state);
   const MOM_LABEL = { primera:'Primera llamada', seguimiento:'Seguimiento', cierre:'Cierre', reactivacion:'No responde · reactivar' };
   const COLOR = { seguridad:'var(--seg)', ego:'var(--ego)', social:'var(--soc)' };
   $('wa-mtag').className = 'mtag mt-'+state.motivo;
@@ -3718,7 +3706,7 @@ function run(){
   const a=analyze(mo,co);
   const formacion=$('f-formacion').value||'';
   const nombre=$('f-nombre').value.trim()||'';
-  state = { ...a, nombre, comercial:($('f-comercial')&&$('f-comercial').value.trim())||'', formacion, rama:ramaOf(formacion), genero:guessGender(nombre), momento:'primera', sub:a.pilares.map(p=>p+'|0'), recursosSel:['dossier','matricula'], incProx:$('inc-prox')?$('inc-prox').checked:true, incDossier:$('inc-dossier')?$('inc-dossier').checked:true, incPresu:$('inc-presu')?$('inc-presu').checked:false, incPrecio:$('inc-precio')?$('inc-precio').checked:false, precioPlan:'', cuotas:0, iaReconoce:'', iaMensajes:null, resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
+  state = { ...a, nombre, comercial:($('f-comercial')&&$('f-comercial').value.trim())||'', formacion, rama:ramaOf(formacion), genero:guessGender(nombre), momento:'primera', sub:a.pilares.map(p=>p+'|0'), recursosSel:['dossier','matricula'], incProx:$('inc-prox')?$('inc-prox').checked:true, incDossier:$('inc-dossier')?$('inc-dossier').checked:true, incPresu:$('inc-presu')?$('inc-presu').checked:false, incPrecio:$('inc-precio')?$('inc-precio').checked:false, precioPlan:'', cuotas:0, iaReconoce:'', resFiltros:{q:'',estado:'',cat:''}, objecionActiva:'', persona:'' };
   window._waEdits={};
   fillControls(); renderAll();
   $('results').classList.add('show'); $('results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -3732,20 +3720,18 @@ $('mgr-filter').addEventListener('change', e=>{ mgrFilter=e.target.value; render
 $('mgr-search').addEventListener('input', e=>{ mgrQuery=e.target.value; renderManager(); });
 $('mgr-toggleall').addEventListener('click', ()=>{ const keys=[...new Set(DOCS.map(d=>folderKey(d.cat)))]; const anyOpen=keys.some(k=>mgrOpen.has(k)); if(anyOpen) mgrOpen.clear(); else keys.forEach(k=>mgrOpen.add(k)); $('mgr-toggleall').textContent=anyOpen?'Expandir todo':'Plegar todo'; renderManager(); });
 $('mgr-copy').addEventListener('click', copyMarketing);
-$('analyzeBtn').addEventListener('click', async ()=>{ run(); await iaGenera(state); });
-if($('regenIA')) $('regenIA').addEventListener('click', async ()=>{ const mo=$('motivacion').value.trim(), co=$('contexto').value.trim(); if(!mo&&!co){ toast('Primero pega el Record ID o escribe motivación/contexto.'); return; } state.iaMensajes=null; window._waEdits={}; renderWhatsApp(); await iaGenera(state); });
-function regenIAnow(){ state.iaMensajes=null; window._waEdits={}; renderWhatsApp(); iaGenera(state); }
+$('analyzeBtn').addEventListener('click', run);
 if($('inc-prox')) $('inc-prox').addEventListener('change', e=>{ state.incProx=e.target.checked; renderWhatsApp(); });
-if($('inc-dossier')) $('inc-dossier').addEventListener('change', e=>{ state.incDossier=e.target.checked; if(state.iaMensajes) regenIAnow(); else renderWhatsApp(); });
-if($('inc-presu')) $('inc-presu').addEventListener('change', e=>{ state.incPresu=e.target.checked; if(state.iaMensajes) regenIAnow(); else renderWhatsApp(); });
-if($('inc-precio')) $('inc-precio').addEventListener('change', e=>{ state.incPrecio=e.target.checked; renderAll(); if(state.iaMensajes) regenIAnow(); });
+if($('inc-dossier')) $('inc-dossier').addEventListener('change', e=>{ state.incDossier=e.target.checked; renderWhatsApp(); });
+if($('inc-presu')) $('inc-presu').addEventListener('change', e=>{ state.incPresu=e.target.checked; renderWhatsApp(); });
+if($('inc-precio')) $('inc-precio').addEventListener('change', e=>{ state.incPrecio=e.target.checked; renderAll(); });
 
 /* ----- Conector HubSpot: pegar URL del negocio -> rellena los campos ----- */
 const HS_PORTAL='25603833';
 function hsDealUrl(id){ return 'https://app.hubspot.com/contacts/'+HS_PORTAL+'/record/0-3/'+id; }
 function parseDealId(u){ if(!u) return ''; u=String(u).trim(); let m=u.match(/\/(?:deal|record\/0-3|0-3)\/(\d{4,})/); if(m) return m[1]; m=u.match(/[?&](?:dealId|objectId)=(\d{4,})/); if(m) return m[1]; if(/^\d{4,}$/.test(u)) return u; m=u.match(/(\d{6,})/); return m?m[1]:''; }
 function hsHint(msg,type){ const e=$('hs-hint'); if(!e) return; e.innerHTML=msg; e.className='hs-hint'+(type?' '+type:''); }
-function hsState(){ hsHint('Listo: pega el <b>Record ID</b> del negocio (el número del final de la URL en HubSpot) y pulsa «Traer del CRM».','ok'); }
+function hsState(){ hsHint('Listo: pega la URL del negocio (o su ID) y pulsa «Traer del CRM». El backend ya está configurado por defecto; si usas otro proxy, ponlo en ⚙︎.','ok'); }
 // Aplica la "lectura" que devuelve Claude (motivo, pilares y reconocimiento personalizado)
 function aplicarLectura(l){
   if(!l) return;
@@ -3786,73 +3772,6 @@ async function iaElige(s){
     fillControls(); renderAll();
   }catch(_){}
 }
-function iaStatus(msg,type){ const e=$('wa-iastatus'); if(!e) return; e.innerHTML=msg||''; e.className='wa-iastatus'+(type?' '+type:''); }
-// La IA ESCRIBE los mensajes de WhatsApp (no plantillas): como un comercial mandando el follow-up
-// tras la llamada. Devuelve {ahora:[...], cuandoResponda:[...]} y lo guarda en state.iaMensajes.
-async function iaGenera(s){
-  const base=iaBase(); if(!base) return false;
-  const mo=($('motivacion').value||''), co=($('contexto').value||'');
-  if(!mo && !co) return false;
-  const btn=$('regenIA'); const prev=btn?btn.textContent:''; if(btn){ btn.disabled=true; btn.textContent='✨ Escribiendo…'; }
-  iaStatus('✨ Claude está escribiendo los mensajes…','load');
-  try{
-    const fn=formName(s.formacion);
-    const cuando=formatCuando(), grupo=formatGrupo(($('f-inicio')&&$('f-inicio').value)||'');
-    // Recursos con enlace que Claude puede adjuntar (decide cuáles y cómo los presenta)
-    const dos=dossierFor(s.formacion);
-    const matricula=DOCS.find(function(d){return d.tipo==='matricula'&&d.link;});
-    const presu=DOCS.find(function(d){return d.tipo==='presupuesto'&&d.link&&d.formacion===s.formacion;})||DOCS.find(function(d){return d.tipo==='presupuesto'&&d.link&&!d.formacion;});
-    const recs=recommendResources(s).filter(function(r){return r.link&&!r.pendiente&&r.tipo!=='matricula'&&r.tipo!=='presupuesto'&&r.tipo!=='dossier';}).slice(0,10);
-    const recursos=[];
-    if(s.incDossier!==false && dos&&dos.link&&!dos.pendiente) recursos.push('[DOSIER] Dosier completo de '+fn+' (lo principal que mandar) → '+dos.link);
-    recs.forEach(function(r){ recursos.push('[RECURSO] '+r.nombre+(r.porque?' — '+r.porque:'')+' → '+r.link); });
-    if(s.incPresu && presu) recursos.push('[PRESUPUESTO] Presupuesto detallado → '+presu.link);
-    if(matricula) recursos.push('[MATRICULA] Enlace de reserva de plaza (va en "cuandoResponda", como siguiente paso) → '+matricula.link);
-    const precio=s.incPrecio?precioLinea(s):'';
-    const MOM={primera:'Acabas de COLGAR la primera llamada. Es tu primer WhatsApp tras hablar.',seguimiento:'Es un SEGUIMIENTO: ya hablasteis, retomas el hilo sin repetir la presentación.',cierre:'Estás en CIERRE: el lead ya está convencido, ayúdale a formalizar la plaza.',reactivacion:'El lead llevaba días sin responder: secuencia breve y respetuosa para reactivar.'};
-    const sys="Eres un comercial senior de Explora FP x Ucademy escribiendo por WhatsApp justo despues de una llamada. "+
-      "Escribes los mensajes TAL CUAL los va a enviar el comercial (no des instrucciones, escribe el texto final). "+
-      "Tono cercano, humano y en 2a persona; nada de plantillas ni de sonar a robot. Tu meta: que el lead abra los recursos y de el siguiente paso. Devuelve SOLO un JSON valido.";
-    const user="DATOS DEL LEAD\n"+
-      "Nombre: "+(s.nombre||'(no lo sabemos)')+"\n"+
-      "Formacion de interes: "+(s.formacion||'(sin definir)')+"\n"+
-      "Lo que de verdad busca (motivacion ulterior): "+(mo||'-')+"\n"+
-      "Contexto personal: "+(co||'-')+"\n"+
-      "Comercial que firma: "+(s.comercial||'(sin nombre)')+"\n"+
-      "Cuando volveis a hablar: "+cuando+(grupo?(". El grupo arranca el "+grupo):'')+"\n"+
-      "MOMENTO: "+(MOM[s.momento]||MOM.primera)+"\n\n"+
-      "RECURSOS QUE PUEDES ADJUNTAR (pega el enlace TAL CUAL dentro del mensaje donde lo presentes; usa solo los que de verdad encajen con lo que busca, pocos y certeros):\n"+
-      (recursos.length?recursos.join('\n'):'(ninguno disponible)')+
-      (precio?("\n\nPRECIO/CUOTAS (inclúyelo solo si encaja con su caso, escrito de forma natural): "+precio):'')+
-      "\n\nCOMO ESCRIBIR (estilo Explora FP x Ucademy):\n"+
-      "- Mensajes CORTOS y separados, como burbujas reales de WhatsApp; cada burbuja, una idea.\n"+
-      "- Arranca reconociendo algo CONCRETO de su situacion o de la llamada. Nada de '¡Hola! Soy X de...' generico y frio.\n"+
-      "- Conecta SIEMPRE el recurso con lo que el lead busca; no sueltes el enlace a secas.\n"+
-      "- Presenta cada enlace con una frase que de contexto (p. ej. 'te dejo el dosier con lo que vimos 👉 ENLACE').\n"+
-      "- Cierra confirmando el siguiente paso de forma natural (cuando volveis a hablar).\n"+
-      "- DE VEZ EN CUANDO (no siempre) termina con una pregunta abierta para que conteste.\n"+
-      "- Emojis con moderacion (como mucho 1 por burbuja). Sin mayusculas gritando.\n"+
-      "- Si hay nombre del comercial, presentate como el/ella de Explora FP x Ucademy en la 1a burbuja.\n\n"+
-      'DEVUELVE JSON: {"ahora":["burbuja 1","burbuja 2", "..."],"cuandoResponda":["burbuja","..."]}\n'+
-      '- "ahora": 2 a 5 burbujas para enviar nada mas colgar (incluye aqui dosier/recursos/precio que decidas adjuntar).\n'+
-      '- "cuandoResponda": 0 a 2 burbujas para cuando el lead conteste (aqui va la reserva/matricula si procede).';
-    const r=await fetch(base,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({system:sys,user:user,max_tokens:900})});
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const j=await r.json(); const txt=(j&&j.text)||''; const mm=txt.match(/\{[\s\S]*\}/); if(!mm) throw new Error('sin JSON');
-    const out=JSON.parse(mm[0]);
-    const clean=a=>Array.isArray(a)?a.map(x=>String(x||'').trim()).filter(Boolean):[];
-    const ahora=clean(out.ahora), cuandoResponda=clean(out.cuandoResponda);
-    if(!ahora.length) throw new Error('vacio');
-    state.iaMensajes={ahora,cuandoResponda}; window._waEdits={}; renderWhatsApp();
-    iaStatus('Escrito por Claude ✓ · clic en un mensaje para copiar, ✎ para ajustar','ok');
-    if(btn){ btn.disabled=false; btn.textContent=prev||'✨ Regenerar con IA'; }
-    return true;
-  }catch(e){
-    iaStatus('No pude escribir con IA ('+(e&&e.message||'error')+'). Te dejo la versión base.','warn');
-    if(btn){ btn.disabled=false; btn.textContent=prev||'✨ Regenerar con IA'; }
-    return false;
-  }
-}
 function hsProp(d,k){ if(!d) return undefined; if(d.properties && d.properties[k]!=null) return d.properties[k]; return d[k]; }
 function fillFromDeal(d){
   const mot=hsProp(d,'motivacion_ulterior')||'', ctx=hsProp(d,'contexto_personal')||'';
@@ -3867,7 +3786,7 @@ function fillFromDeal(d){
 }
 function traerDeHubspot(){
   const id=parseDealId(($('hs-url').value)||'');
-  if(!id){ hsHint('No reconozco ese Record ID. Pega el número del negocio (Record ID de HubSpot, p. ej. 494908106958).','warn'); return; }
+  if(!id){ hsHint('No reconozco esa URL. Pega el enlace del negocio (deal) de HubSpot.','warn'); return; }
   const explicit=localStorage.getItem('hs_connector');
   const cands = explicit ? [explicit] : ['/api/deal?id={id}','https://explora--9f982946708111f1a2831607ee4eb77e.web.val.run?id={id}'];
   const headers={}; const tok=localStorage.getItem('hs_token')||''; if(tok) headers['Authorization']='Bearer '+tok;
@@ -3878,7 +3797,7 @@ function traerDeHubspot(){
     const target = conn.indexOf('{id}')>=0 ? conn.replace('{id}',encodeURIComponent(id)) : (conn + (conn.indexOf('?')>=0?'&':'?') + 'id=' + encodeURIComponent(id));
     fetch(target,{headers:headers})
       .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-      .then(async function(d){ window._hsBase=conn.split('?')[0].replace(/\/+$/,''); if(fillFromDeal(d)){ run(); aplicarLectura(d.lectura); hsHint('Claude está escribiendo los mensajes para este lead…','load'); const ok=await iaGenera(state); hsHint(ok?('Datos de HubSpot ✓ — Claude escribió los mensajes del negocio '+id+'. Edítalos si quieres.'):('Datos de HubSpot ✓ (negocio '+id+'). No pude escribir con IA; te dejo la versión base.'), ok?'ok':'warn'); } else { hsHint('El negocio '+id+' no tiene Motivación Ulterior ni Contexto personal rellenos.','warn'); } })
+      .then(async function(d){ window._hsBase=conn.split('?')[0].replace(/\/+$/,''); if(fillFromDeal(d)){ run(); aplicarLectura(d.lectura); hsHint('Aplicando lectura de Claude…','load'); await iaElige(state); hsHint('Datos de HubSpot ✓ — Claude eligió pilares, sub-áreas y recursos (negocio '+id+'). Edítalo si quieres.','ok'); } else { hsHint('El negocio '+id+' no tiene Motivación Ulterior ni Contexto personal rellenos.','warn'); } })
       .catch(function(e){ if(i+1<cands.length){ tryC(i+1); } else { hsHint('No se pudo conectar ('+e.message+'). Configura tu proxy en ⚙︎.','warn'); } });
   })(0);
 }
@@ -3900,7 +3819,7 @@ $('f-comercial').addEventListener('input', ()=>{ state.comercial=$('f-comercial'
 $('f-formacion').addEventListener('change', ()=>{ state.formacion=$('f-formacion').value; state.rama=ramaOf(state.formacion); renderAll(); });
 ['f-fecha','f-hora','f-inicio'].forEach(id=>$(id)&&$(id).addEventListener('input', renderWhatsApp));
 document.querySelectorAll('input[name=gen]').forEach(r=>r.addEventListener('change', ()=>{ state.genero=document.querySelector('input[name=gen]:checked').value; renderAll(); const on=$('obj-chips').querySelector('.obj-chip.on'); if(on) showObj(+on.dataset.i); }));
-document.querySelectorAll('input[name=mom]').forEach(r=>r.addEventListener('change', async ()=>{ state.momento=document.querySelector('input[name=mom]:checked').value; state.iaMensajes=null; window._waEdits={}; renderAll(); await iaGenera(state); }));
+document.querySelectorAll('input[name=mom]').forEach(r=>r.addEventListener('change', ()=>{ state.momento=document.querySelector('input[name=mom]:checked').value; window._waEdits={}; renderAll(); }));
 document.querySelectorAll('input[name=motivo]').forEach(r=>r.addEventListener('change', ()=>{
   state.motivo=document.querySelector('input[name=motivo]:checked').value;
   $('motivo-desc').textContent=MOTIVOS[state.motivo].desc;
